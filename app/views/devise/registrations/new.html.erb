@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="col-lg-2 offset-lg-2">
+  <h1>Sign up</h1>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+　<!-- エラーメッセージ -->
+  <%= devise_error_messages! %>
+
+<!-- 名前入力 -->
+  <div class="namse_field">
+    <div class="row">
+      <div class="row col-lg-4 offset-lg-2">
+      <h4>Name</h4><p>(姓名の間スペースなし)</p>
+      </div>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"col-lg-3" %>
+    </div>
+  </div>
+
+<br>
+<!-- 名前カナ入力　 -->
+  <div class="name_kana_field">
+    <div class="row">
+      <div class="row col-lg-4 offset-lg-2">
+      <h4>Name</h4><p>(カナ)</p>
+      </div>
+      <%= f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", class:"col-lg-3" %>
+    </div>
+  </div>
+
+<br>
+<!-- 郵便番号入力 -->
+  <div class="post_field">
+    <div class="row">
+      <div class="row col-lg-4 offset-lg-2">
+      <h5>郵便番号</h5><p>(ハイフンなし)</p>
+      </div>
+      <%= f.number_field :postal_code, autofocus: true, autocomplete: "postal_code", class:"col-lg-3" %>
+    </div>
+  </div>
+
+<br>
+<!-- 住所入力 -->
+  <div class="address_field">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-2">
+      <h4>Address</h4>
+      </div>
+      <%= f.text_field :address, autofocus: true, autocomplete: "address", class:"col-lg-3" %>
+    </div>
+  </div>
+
+<br>
+<!-- 電話番号入力 -->
+  <div class="phone_number_field">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-2">
+      <h5>電話番号</h5>
+      </div>
+      <%= f.number_field :phone_number, autofocus: true, autocomplete: "phone_number", class:"col-lg-3" %>
+    </div>
+  </div>
+
+<br>
+<!-- E-mails入力 -->
+  <div class="email_field">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-2">
+      <h4>E-mail</h4>
+      </div>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-lg-3" %>
+    </div>
+  </div>
+
+<br>
+<!-- パスワード入力 -->
+  <div class="password_field">
+    <div class="row">
+      <div class="row col-lg-4 offset-lg-2">
+      <h4>Password</h4>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      </div>
+      <%= f.password_field :password, autocomplete: "new-password", class:"col-lg-3" %>
+    </div>
+  </div>
+
+<br>
+<!-- パスワード確認入力 -->
+  <div class="password2_field">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-2">
+      <h4>Password confirmation</h4>
+      </div>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"col-lg-3" %>
+    </div>
+  </div>
+
+<br>
+<!-- サインアップボタン -->
+  <div class="signup_actions">
+    <div class="col-lg-2 offset-lg-8">
+    <%= f.submit "Sign up" %>
+    </div>
+  </div>
+<% end %>
+
+
+</div>

@@ -1,0 +1,91 @@
+<div class="container">
+
+  <div class="row offset-lg-5">
+    <h1>My Cart</h1>
+  </div>
+
+  <!-- ライン -->
+  <div class="col-lg-12" style="border-bottom: solid 4px #C0C0C0;"></div>
+
+  <% @cartworks.each do |cw| %>
+
+  <!-- 作品画像表示 -->
+  <div class="row">
+    <div class="col-lg-3">
+      <% if @cartworks.empty? %>
+      <p>カートに追加された商品はありません</p>
+      <% else %>
+      <%= attachment_image_tag cw.work, :image, :fill, 200, 200, :size => "200x200", fallback: "no-item-image.jpg" %>
+      <% end %>
+    </div>
+
+
+    <div class="row">
+      <!-- 作品枚数変更ボタン -->
+      <div class="col-lg-4 text-lg-center">
+	    <div class="form-group form-inline">
+		  <%= link_to '+', shopping_cart_pass_path(params[:id], cart_work_id: cw.id, status: 0), class:"btn-sm btn-light ", method: :patch %>
+		  <% if cw.quantity >= 2 %>
+		  <%= link_to '-', shopping_cart_pass_path(params[:id], cart_work_id: cw.id, status: 1), class:"btn-sm btn-light ", method: :patch %>
+		  <% else %>
+		  <%= link_to '-', shopping_cart_shopping_work_path(params[:id], cart_work_id: cw.id), class:"btn-sm btn-light ", method: :delete, data: { confirm: 'カートから商品を削除しますか？' } %>
+		  <% end %>
+		   <h5>枚数：<%= cw.quantity + cw.size.quantity %></h5>
+		</div>
+	  </div>
+
+	  <!-- 作品枚数変更後の金額表示 -->
+	  <div class="col-lg-2">
+	    <p>   ¥
+	    <% if cw.size_id == 10 %>
+	    <%= ((cw.quantity - 1) * (cw.work.price/10)) + ( 82 * (cw.quantity - 1)) + 820 + cw.work.price %>
+	    <% else %>
+		<%= (cw.quantity * cw.work.price) + (cw.size.price*cw.quantity) %>
+		<% end %>
+		</p>
+	  </div>
+
+      <!-- 作品サイズ変更ボタン -->
+      <div class="col-lg-5">
+	    <%= form_for cw, url: shopping_cart_update_path(params[:id], cart_work_id: cw.id), method: :POST do |cs| %>
+	    <%= cs.collection_select :size_id, Size.all, :id, :size, :prompt => "Select", class: "col-lg-1" %>
+	    <%= cs.submit "変更", class: "btn btn-dark " %>
+	    <% end %>
+      </div>
+
+      <!-- カート内作品削除ボタン -->
+      <div class="col-lg-1">
+	    <%= link_to '削除', shopping_cart_shopping_work_path(params[:id], cart_work_id: cw.id), class: "btn btn-danger", method: :delete, data: { confirm: 'カートから商品を削除しますか？' } %>
+      </div>
+    </div>
+  </div>
+
+    <!-- 作品タイトル、ユーザ名表示 -->
+    <div class="item_detail" >
+	  <table class="table table-sm">
+	    <tr>
+		  <th>Title</th>
+		  <th>User Name</th>
+		</tr>
+		<tr>
+		  <td><%= cw.work.work_name %></td>
+		  <td><%= cw.work.user.name %></td>
+		</tr>
+	  </table>
+	</div>
+
+  <% end %>
+
+    <!-- 作品全合計金額表示 -->
+    <div class="col-lg-9 offset-lg-10">
+	  <h2>合計 ¥
+	  <%= @pricesums %>
+	  </h2>
+	</div>
+
+    <!-- 注文確認ボタン -->
+    <div class="col-lg-2 offset-lg-11">
+    <%= link_to '注文確認', shopping_cart_path(params[:id]), class:"btn btn-primary", method: :get %>
+    </div>
+
+</div>

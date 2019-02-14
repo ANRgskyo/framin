@@ -1,0 +1,63 @@
+<div class="container">
+
+  <div class="row col-lg-3 offset-lg-2">
+  <h1>銀行振込先</h1>
+  </div>
+
+<%= form_for @bank, url: config_bank_path do |b| %>
+
+<br>
+<!-- 銀行名記入欄 -->
+<div class="row">
+  <div class="row col-lg-3 offset-lg-3">
+  <h4>銀行名</h4><p>＊普通口座のみ</p>
+  </div>
+  <%= b.select :bank_name, [["三菱UFJ銀行", "01"], ["みずほ銀行", "02"], ["三井住友銀行", "03"], ["りそな銀行", "04"]],:prompt => "Select" %>
+</div>
+
+ <br>
+<!-- 支店番号記入欄 -->
+<div class="row">
+  <div class="row col-lg-3 offset-lg-3">
+  <h4>支店番号</h4><p>(３ケタ)</p>
+  </div>
+  <%= b.number_field :branch_number, class: "col-lg-3" %>
+</div>
+
+<br>
+<!-- 口座番号選択欄 -->
+<div class="row">
+  <div class="row col-lg-3 offset-lg-3">
+  <h4>口座番号</h4><p>(7ケタ)</p>
+  </div>
+  <%= b.number_field :account_number, class: "col-lg-3" %>
+</div>
+
+ <br>
+<!-- 口座名義記入欄 -->
+<div class="row" >
+  <!-- セイ記入欄 -->
+  <div class="row col-lg-2 offset-lg-3">
+  <h4>口座名義</h4><p>(カナ)</p>
+  </div>
+  <div class="col-lg-1">
+  <h4>セイ</h4>
+  </div>
+  <h5><%= b.text_field :surname %></h5>
+</div>
+  <!-- メイ記入欄 -->
+<div class="row">
+  <div class="col-lg-1 offset-lg-5">
+  <h4>メイ</h4>
+  </div>
+  <h5><%= b.text_field :name %></h5>
+</div>
+
+<!-- 登録ボタン -->
+<div class="row col-lg-2 offset-lg-8">
+  <%= b.submit "登録", class: "btn btn-dark" %>
+</div>
+
+<% end %>
+
+</div>

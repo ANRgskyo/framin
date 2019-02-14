@@ -1,0 +1,112 @@
+<div class="container">
+
+  <div class="row offset-lg-5">
+  <h1 style="font-family: monospace,'Courier New';">注文確認</h1>
+  </div>
+
+  <!-- ライン -->
+  <div class="col-lg-12" style="border-bottom: solid 4px #C0C0C0;"></div>
+
+  <div class="row">
+  	<!-- 住所表示 -->
+    <div class="offset-lg-3 col-lg-3">
+      <h3>Address</h3>
+      <p>〒<%= @shoppingcart.user.postal_code %></p>
+      <p><%= @shoppingcart.user.address %></p>
+    </div>
+
+  <%= form_for @order, url:shopping_cart_path do |sf| %>
+    <!-- 支払い方法表示 -->
+    <div class="col-lg-12">
+      <h3>支払い方法</h3>
+      <% @credit.each do |c| %>
+      <h5><%= sf.radio_button :credit_card_id, c.id, {:checked => true}%>*******<%= c.card_number.slice(5..8) %>クレジットカード</h5>
+      <% end %>
+    </div>
+  </div>
+
+<br>
+  <div class="row">
+  	<!-- お届け日表示 -->
+  	<div class="col-lg-3 offset-lg-3">
+      <h3>お届け日</h3>
+      <%= sf.date_field :date, value: Time.now.strftime("%Y-%m-%d") %>
+    </div>
+    <!-- 時間指定表示 -->
+    <div class="col-lg-5">
+      <h3>時間指定</h3>
+      <h5><%= sf.radio_button :time, "1", {:checked => true} %>9:00〜12:00</h5>
+      <h5><%= sf.radio_button :time, "2" %>12:00〜17:00</h5>
+      <h5><%= sf.radio_button :time, "3" %>17:00〜21:00</h5>
+    </div>
+  </div>
+
+  <!-- 購入作品一覧表示 -->
+  <div class="col-lg-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User name</th>
+      	  <th>Title</th>
+      	  <th>枚数</th>
+          <th>サイズ</th>
+        </tr>
+      </thead>
+      <% @cartworks.each do |post| %>
+      <tbody>
+  	    <tr>
+  	      <td><%= post.work.user.name%></td>
+  	      <td><%= post.work.work_name%></td>
+  	      <td><%= post.quantity %>枚</td>
+          <td><%= post.size.size %></td>
+  	    </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+
+  <!-- 合計金額表示 -->
+  <div class="col-lg-5 offset-lg-8">
+　<h3><u>合計¥ <%= @pricesums %></u></h3>
+  </div>
+
+  <!-- 注文ボタン -->
+  	<div class="col-lg-4 offset-lg-10">
+      <% if @shoppingcart.is_active == true && @credit.empty? == false %>
+      <button type="button" data-toggle="modal" data-target="#myModal">
+      <%= sf.submit "注文", class: "btn btn-primary", toggle: "modal", target: "#myModal" %>
+      </button>
+      <% end %>
+    </div>
+
+
+  <% end %>
+
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>ご注文完了しました。</3>
+        <h3>受付番号: <%= @shoppingcart.id %></h3>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'My page', user_path(current_user.id), class:"btn btn-primary", method: :get %>
+      </div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+</div>

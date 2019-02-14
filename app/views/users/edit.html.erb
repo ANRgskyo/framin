@@ -1,0 +1,84 @@
+<div class="container">
+
+  <div class="row col-lg-3 offset-lg-2">
+  <h1>User edit</h1>
+  </div>
+
+  <%= form_for(@user) do |f| %>
+
+<!-- ユーザ画像表示 -->
+  <div class="row col-lg-3 offset-lg-4">
+  <%= attachment_image_tag @user, :image, :fill, 300, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+  </div>
+
+ <br>
+<!-- ユーザ画像編集 -->
+  <div class="row">
+  	<div class="col-lg-3 offset-lg-3">
+    <h4>image</h4>
+    </div>
+    <%= f.attachment_field :image %>
+  </div>
+
+<br>
+<!-- 郵便番号編集 -->
+  <div class="row">
+  	<div class="row col-lg-3 offset-lg-3">
+    <h4>郵便番号</h4><p>(ハイフンなし)</p>
+    </div>
+    <%= f.text_field :postal_code, class: "col-lg-3" %>
+  </div>
+
+<br>
+<!-- 住所編集 -->
+  <div class="row">
+  	<div class="row col-lg-3 offset-lg-3">
+    <h4>Address</h4>
+    </div>
+    <%= f.text_area :address, class: "col-lg-3" %>
+  </div>
+
+<br>
+<!-- 電話番号編集 -->
+  <div class="row">
+  	<div class="row col-lg-3 offset-lg-3">
+    <h4>電話番号</h4>
+    </div>
+    <%= f.text_field :phone_number, class: "col-lg-3" %>
+  </div>
+
+<br>
+<!-- email編集 -->
+  <div class="row">
+  	<div class="row col-lg-3 offset-lg-3">
+    <h4>E-mail</h4>
+    </div>
+    <%= f.text_field :email, class: "col-lg-3" %>
+  </div>
+
+<br>
+<!-- 紹介文編集 -->
+  <div class="row">
+  	<div class="row col-lg-3 offset-lg-3">
+    <h4>introduction</h4>
+    </div>
+    <%= f.text_area :introduction, class: "col-lg-3" %>
+  </div>
+
+<br>
+<!-- 性別編集 -->
+  <div class="row">
+  	<div class="col-lg-2 offset-lg-4">
+    <h4><%= f.radio_button :gender, "1" %> Male</h4>
+    </div>
+    <h4><%= f.radio_button :gender, "2" %> Female</h4>
+  </div>
+
+<!-- 編集ボタン -->
+  <div class="row col-lg-2 offset-lg-8">
+  <%= f.submit "Update", class: "btn btn-dark" %>
+  </div>
+
+  <% end %>
+
+</div>

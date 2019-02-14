@@ -1,0 +1,2 @@
+module Config::CreditsHelper
+end

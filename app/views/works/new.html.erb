@@ -1,0 +1,70 @@
+<div class="container">
+
+  <div class="row col-lg-3 offset-lg-2">
+  <h1>Works</h1>
+  </div>
+
+<%= form_for(@work) do |w| %>
+
+<!-- 作品画像投稿 -->
+<div class="row">
+  <div class="col-lg-3 offset-lg-3">
+  <h4>Image</h4>
+  </div>
+  <%= w.attachment_field :image %>
+</div>
+
+<br>
+<!-- 作品タイトル記入欄 -->
+<div class="row">
+  <div class="row col-lg-3 offset-lg-3">
+  <h4>Title</h4>
+  </div>
+  <%= w.text_field :work_name, class: "col-lg-3" %>
+</div>
+
+ <br>
+<!-- 背景記入欄 -->
+<div class="row">
+  <div class="row col-lg-3 offset-lg-3">
+  <h4>Background</h4>
+  </div>
+  <%= w.text_area :background, class: "col-lg-3" %>
+</div>
+
+<br>
+<!-- カテゴリー選択欄 -->
+<div class="row">
+  <div class="row col-lg-3 offset-lg-3">
+  <h4>Category</h4>
+  </div>
+  <%= w.collection_select :category_id, Category.all, :id, :category_name, :prompt => "Select", class: "col-lg-3" %>
+</div>
+
+<br>
+<!-- 非売品or売品欄 -->
+<div class="row">
+  <div class="col-lg-2 offset-lg-4">
+  <h4><%= w.radio_button :is_active, true, {:checked => true, :id => "isRadio" } %> Sale</h4>
+  </div>
+  <h4><%= w.radio_button :is_active, false, {:id => "isRadio" } %> Notsale</h4>
+</div>
+
+
+ <br>
+<!-- デザイン料記入欄 -->
+<div class="row" id="workprice">
+  <div class="row col-lg-3 offset-lg-3">
+  <h4>デザイン料</h4>
+  </div>
+  <h5>¥<%= w.text_field :price %></h5>
+</div>
+
+<!-- 出品ボタン -->
+<div class="row col-lg-2 offset-lg-8">
+  <%= w.submit "出品", class: "btn btn-dark" %>
+</div>
+
+<% end %>
+
+</div>

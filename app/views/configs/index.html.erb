@@ -1,0 +1,51 @@
+<div class="container">
+
+  <div class="row col-lg-3 offset-lg-4">
+  <h1>Credit Card</h1>
+  </div>
+
+  <!-- クレジットカード登録一覧 -->
+  <% @credit.each do |c| %>
+  <div class="row offset-lg-4">
+  <h4>**********<%= c.card_number.slice(5..8) %>クレジット</h4>
+    <div class="row col-lg-2 offset-lg-3">
+    <%= link_to 'Card編集', edit_config_credit_path(c.id), class: 'btn btn-light' %>
+    </div>
+  </div>
+  <% end %>
+
+  <!-- カード追加ボタン -->
+  <div class="row">
+  <%= link_to 'Card追加', config_credit_new_path, class: 'btn btn-primary offset-lg-5' %>
+  </div>
+
+  <br>
+  <!-- 銀行振込先表示 -->
+  <div class="row col-lg-3 offset-lg-4">
+  <h1>銀行振込先</h1>
+  </div>
+
+  <div class="row offset-lg-4">
+    <h4><%= @bank_name %>
+    <% if Bank.find_by(user_id: current_user.id).nil? == false %>
+    <%= @banks.branch_number %>
+    <%= @banks.account_number %>
+    <% end %>
+    </h4>
+
+    <% if Bank.find_by(user_id: current_user.id).nil? == false %>
+    <div class="row col-lg-2 offset-lg-4">
+    <%= link_to '削除', config_bank_destroy_path, method: :delete, class: 'btn btn-danger', "data-confirm" => "Are you sure?" %>
+    </div>
+    <% end %>
+
+  </div>
+
+  <!-- 振込先追加ボタン -->
+  <% if Bank.find_by(user_id: current_user.id).nil? == true %>
+  <div class="row">
+  <%= link_to '振込先登録', config_bank_new_path, class: 'btn btn-primary offset-lg-6' %>
+  </div>
+  <% end %>
+
+</div>
