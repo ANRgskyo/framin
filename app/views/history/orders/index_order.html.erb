@@ -1,0 +1,55 @@
+<div class="container">
+
+  <div class="col-lg-3 offset-lg-5">
+  <h1>購入履歴</h1>
+  </div>
+
+  <!-- 購入一覧表示 -->
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>届け日</th>
+      	  <th>Title</th>
+      	  <th>枚数</th>
+          <th>Size</th>
+          <th>合計</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <% @shopping.each do |post| %>
+        <% post.cart_works.each do |pc| %>
+        <tbody>
+  	      <tr>
+  	        <td><%= post.order.date %></td>
+  	        <td><%= link_to work_path(pc.work_id) do %>
+  	            <%= pc.work.work_name %>
+  	            <% end %>
+  	        </td>
+  	        <td><%= pc.quantity %>枚</td>
+            <td><%= pc.size.size %></td>
+            <td>¥<%= pc.price %></td>
+
+            <% if post.order.status == 1 %>
+              <td>受付</td>
+            <% elsif post.order.status == 2 %>
+              <td>準備中</td>
+            <% elsif post.order.status == 3 %>
+              <td>配送中</td>
+            <% else %>
+              <td>完了</td>
+            <% end %>
+
+  	      </tr>
+        </tbody>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-lg-4 offset-lg-5">
+  <h4><%= paginate @shopping %></h4>
+  </div>
+
+
+</div>

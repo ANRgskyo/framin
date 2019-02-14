@@ -19,7 +19,7 @@ class ShoppingCart::CartOrdersController < ApplicationController
   end
 
   def order
-  	@order =Order.new(order_params)
+  	@order = Order.new(order_params)
 
   	@cartworks = CartWork.where(shopping_cart_id: params[:id])
     # 各作品合計金額保存機能
@@ -30,6 +30,7 @@ class ShoppingCart::CartOrdersController < ApplicationController
 	    price = (cw.quantity * cw.work.price) + (cw.size.price * cw.quantity)
       end
     cw.price = price
+    cw.sale_status = 1
     end
     @cartworks.update(cartwork_params)
     # orderテーブル保存機能
@@ -43,7 +44,8 @@ class ShoppingCart::CartOrdersController < ApplicationController
     shoppingcart.is_active = false
     shoppingcart.update(shoppingcart_params)
 
-    # redirect_to user_path(current_user.id)
+
+
   end
 
   private

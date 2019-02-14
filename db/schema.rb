@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_114236) do
     t.integer "price"
     t.integer "quantity", default: 1, null: false
     t.integer "size_id", null: false
+    t.integer "sale_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -141,7 +142,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_114236) do
     t.integer "price", default: 0, null: false
     t.text "background"
     t.string "category_id", null: false
-    t.boolean "is_active", null: false
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

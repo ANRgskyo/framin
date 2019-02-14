@@ -6,6 +6,7 @@ class CreateCartWorks < ActiveRecord::Migration[5.2]
       t.integer :price
       t.integer :quantity, null: false, default: 1
       t.integer :size_id, null: false
+      t.integer :sale_status
       t.timestamps
     end
   end

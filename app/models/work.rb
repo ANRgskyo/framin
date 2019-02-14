@@ -2,6 +2,7 @@ class Work < ApplicationRecord
   
   belongs_to :user
   belongs_to :category
+  has_many :sales, dependent: :destroy
   has_many :goods, dependent: :destroy
   has_many :cart_works, dependent: :destroy
   has_many :shopping_carts, through: :cart_works

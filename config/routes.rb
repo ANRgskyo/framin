@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
   # history/
   namespace :history do
-    get 'order/:id', to: 'orders#index_order'
+    get 'order', to: 'orders#index_order'
     get ':order_id/:id', to: 'orders#show_order', as: :order_show
     get 'sale', to: 'orders#index_sale'
     get 'sale/:id', to: 'orders#show_sale', as: :sale_show

@@ -19,8 +19,12 @@
     <!-- 支払い方法表示 -->
     <div class="col-lg-12">
       <h3>支払い方法</h3>
+      <% if @credit.empty? == false %>
       <% @credit.each do |c| %>
       <h5><%= sf.radio_button :credit_card_id, c.id, {:checked => true}%>*******<%= c.card_number.slice(5..8) %>クレジットカード</h5>
+      <% end %>
+      <% else %>
+      <h4> クレジットカードの登録をお願いします。</h4>
       <% end %>
     </div>
   </div>
@@ -89,11 +93,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <h3>ご注文完了しました。</3>
-        <h3>受付番号: <%= @shoppingcart.id %></h3>
+        <h3><strong>ご注文完了しました。</strong></3>
+        <h3><strong>受付番号: <%= @shoppingcart.id %></strong></h3>
       </div>
       <div class="modal-footer">
-        <%= link_to 'My page', user_path(current_user.id), class:"btn btn-primary", method: :get %>
+        <%= link_to 'To My page', user_path(current_user.id), class:"btn btn-primary", method: :get %>
       </div><!-- /.modal-footer -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
