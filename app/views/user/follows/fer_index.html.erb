@@ -1,0 +1,36 @@
+<div class="container">
+
+  <!-- フォロワー人数表示 -->
+  <div class="col-lg-2 offset-lg-2">
+    <h1 id="followers" class="stat"><strong>Follower:<%= @user.followers.count %></strong></h1>
+  </div>
+
+  <!-- フォロワーユーザ一覧表示 -->
+  <% @users.each do |user| %>
+  <div class="row">
+  	<%= link_to user_path(user.follower.id) do %>
+  	<div class="col-lg-3">
+      <%= attachment_image_tag user.follower, :image, :fill, 100, 100, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+    </div>
+    <% end %>
+    <div class="col-lg-2">
+      <h5>User Name:</h5>
+      <h5><%= user.follower.name %></h5>
+    </div>
+    <div class="col-lg-5">
+      <h5>Introduction:</h5>
+      <h5><%= user.follower.introduction %></h5>
+    </div>
+    <div class="col-lg-2">
+      <section id="user_<%= user.follower.id %>">
+      <%= render 'users/follow_form', user: user.follower if signed_in? %>
+      </section>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="col-lg-4 offset-lg-5">
+  <h4><%= paginate @users %></h4>
+  </div>
+
+</div>

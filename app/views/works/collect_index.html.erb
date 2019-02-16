@@ -1,0 +1,93 @@
+<!-- ユーザー表示 -->
+  <strong><h5>My Collections</h5></strong>
+
+<div class="clearfix">
+  <div class="row col-lg-3 myworks_user">
+    <%= link_to user_path(@user.id) do %>
+    <%= attachment_image_tag @user, :image, :fill, 120, 120, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class:'user-image-work' %>
+    <% end %>
+    <p><%= @user.name %></p>
+  </div>
+
+  <!-- 画面切り替え表示 -->
+  <div class="icons">
+  	<div class="icon-bar">
+    <%= fa_icon("ellipsis-v", class:"icon1") %>
+  	<%= fa_icon("ellipsis-h", class:"icon2") %>
+    <%= fa_icon("th", class:"icon3") %>
+    </div>
+  </div>
+</div>
+
+<br>
+<!-- スライダー作品表示 -->
+<div class="slider work-slider">
+  <% @work.each do |w| %>
+    <div>
+      <!-- 作品画像表示 -->
+       <%= link_to work_path(w.id) do %>
+       <%= attachment_image_tag w, :image, :fill, 600, 600, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+         <h4 class="work-user-name"><%= w.work_name %></h4>
+       <% end %>
+      <!-- Good機能 -->
+       <div class="favorireds">
+       <% if w.favorited_by?(current_user) %>
+         <%= link_to work_favorite_delete_path(w.id), method: :delete, class: "fav", remote: true do %>
+         <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good -</h5>
+         <% end %>
+       <% else %>
+         <%= link_to work_favorite_new_path(w.id), method: :post, class: "fav", remote: true do %>
+         <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good ＋</h5>
+         <% end %>
+       <% end %>
+       </div>
+
+    </div>
+  <% end %>
+</div>
+
+<!-- スクロール作品表示 -->
+<div class="scroll work-scroll container">
+  <div class="offset-lg-1">
+  	<!-- 作品画像表示 -->
+	<% @work.each do |w| %>
+	  <%= link_to work_path(w.id) do %>
+	  <%= attachment_image_tag w, :image, :fill, 800, 800, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+	    <h4 class="work-user-name"><%= w.work_name %></h4>
+	  <% end %>
+    <!-- Good機能 -->
+	  <% if w.favorited_by?(current_user) %>
+        <%= link_to work_favorite_delete_path(w.id), method: :delete, class: "fav", remote: true do %>
+        <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good -</h5>
+        <% end %>
+      <% else %>
+        <%= link_to work_favorite_new_path(w.id), method: :post, class: "fav", remote: true do %>
+        <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good ＋</h5>
+        <% end %>
+      <% end %>
+	<% end %>
+  </div>
+</div>
+
+
+<!-- ボックス作品表示 -->
+<div class="box-mayworks clearfix">
+  <% @work.each do |w| %>
+	 <div class="works">
+	  <%= link_to work_path(w.id) do %>
+	  <%= attachment_image_tag w, :image, :fill, 300, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class:'work-box' %>
+	    <h4 class="work-user-name work-box"><%= w.work_name %></h4>
+	  <% end %>
+      <!-- Good機能  -->
+	 <% if w.favorited_by?(current_user) %>
+         <%= link_to work_favorite_delete_path(w.id), method: :delete, class: "fav", remote: true do %>
+         <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good -</h5>
+         <% end %>
+     <% else %>
+         <%= link_to work_favorite_new_path(w.id), method: :post, class: "fav", remote: true do %>
+         <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good ＋</h5>
+         <% end %>
+     <% end %>
+     </div>
+  <% end %>
+</div>

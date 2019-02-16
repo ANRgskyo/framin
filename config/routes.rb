@@ -74,7 +74,7 @@ Rails.application.routes.draw do
      # カートに追加する作品
   post 'work/:id', to: 'works#add', as: :in_cart_work
      # フォローした作品を表示
-  get 'work', to: 'works#collect_index', as: :follor_work
+  get 'work', to: 'works#collect_index', as: :follower_work
 
 
   # users

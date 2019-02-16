@@ -1,8 +1,11 @@
 class Config::BanksController < ApplicationController
+
+  # 銀行登録ページ表示機能
   def bank_new
   	@bank = Bank.new
   end
 
+  # 銀行登録機能
   def bank_create
     @bank =Bank.new(bank_params)
     @bank.user_id = current_user.id

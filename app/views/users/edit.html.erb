@@ -1,14 +1,14 @@
 <div class="container">
 
   <div class="row col-lg-3 offset-lg-2">
-  <h1>User edit</h1>
+  <h1><strong>User edit</strong></h1>
   </div>
 
   <%= form_for(@user) do |f| %>
 
 <!-- ユーザ画像表示 -->
   <div class="row col-lg-3 offset-lg-4">
-  <%= attachment_image_tag @user, :image, :fill, 300, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+  <%= attachment_image_tag @user, :image, :fill, 250, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
   </div>
 
  <br>
@@ -76,7 +76,7 @@
 
 <!-- 編集ボタン -->
   <div class="row col-lg-2 offset-lg-8">
-  <%= f.submit "Update", class: "btn btn-dark" %>
+    <h6><%= f.submit "Update", class: "btn btn-dark" %></h6>
   </div>
 
   <% end %>

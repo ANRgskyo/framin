@@ -64,7 +64,13 @@ class WorksController < ApplicationController
     redirect_to shopping_cart_shopping_cart_path(shopcart.id)
   end
 
+  # フォローしたユーザの作品表示機能
   def collect_index
+    @follow = Follow.where(follower_id: current_user.id)
+    @follow.each do |f|
+      @work = Work.where(user_id: f.followed_id).order(:id "DESC")
+    end
+    @user = User.find(current_user.id)
   end
 
   private

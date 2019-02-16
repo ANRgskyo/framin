@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
+
+  # ユーザMy page表示機能
   def show
+    @user = User.find(params[:id])
+    @work = Work.where(user_id: params[:id])
   end
 
   # ユーザ編集画面表示
@@ -26,10 +30,24 @@ class UsersController < ApplicationController
   def update_cancel
   end
 
+  # フォロー機能
   def add
+    @user = User.find(params[:id])
+    current_user.follow!(@user)
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
   end
 
+  # フォロー解除機能
   def follow_destroy
+    @user = User.find(params[:id])
+    current_user.unfollow!(@user)
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
   end
 
   private

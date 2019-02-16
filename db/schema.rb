@@ -59,6 +59,9 @@ ActiveRecord::Schema.define(version: 2019_02_05_114236) do
     t.integer "follower_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
   end
 
   create_table "goods", force: :cascade do |t|
@@ -76,18 +79,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_114236) do
     t.text "address", null: false
     t.date "date", null: false
     t.integer "time", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sales", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "buy_user_id", null: false
-    t.integer "status", null: false
-    t.integer "work_id", null: false
-    t.integer "size_id", null: false
-    t.integer "price", null: false
-    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
