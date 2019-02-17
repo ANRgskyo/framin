@@ -66,10 +66,8 @@ class WorksController < ApplicationController
 
   # フォローしたユーザの作品表示機能
   def collect_index
-    @follow = Follow.where(follower_id: current_user.id)
-    @follow.each do |f|
-      @work = Work.where(user_id: f.followed_id).order(:id "DESC")
-    end
+    @follow = Follow.where(follower_id: current_user.id).pluck(:followed_id)
+    @works = Work.where(user_id: @follow)
     @user = User.find(current_user.id)
   end
 

@@ -22,7 +22,7 @@
 <br>
 <!-- スライダー作品表示 -->
 <div class="slider work-slider">
-  <% @work.each do |w| %>
+  <% @works.each do |w| %>
     <div>
       <!-- 作品画像表示 -->
        <%= link_to work_path(w.id) do %>
@@ -50,7 +50,7 @@
 <div class="scroll work-scroll container">
   <div class="offset-lg-1">
   	<!-- 作品画像表示 -->
-	<% @work.each do |w| %>
+	<% @works.each do |w| %>
 	  <%= link_to work_path(w.id) do %>
 	  <%= attachment_image_tag w, :image, :fill, 800, 800, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
 	    <h4 class="work-user-name"><%= w.work_name %></h4>
@@ -72,7 +72,7 @@
 
 <!-- ボックス作品表示 -->
 <div class="box-mayworks clearfix">
-  <% @work.each do |w| %>
+  <% @works.each do |w| %>
 	 <div class="works">
 	  <%= link_to work_path(w.id) do %>
 	  <%= attachment_image_tag w, :image, :fill, 300, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class:'work-box' %>

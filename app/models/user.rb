@@ -30,4 +30,14 @@ class User < ApplicationRecord
   def following?(other_user)
   	following.include?(other_user)
   end
+
+  # ユーザ検索
+  def self.search(keyword)
+    if keyword
+      where(['name LIKE ?', "%#{keyword}%"])
+    else
+      User.all
+    end
+  end
+
 end

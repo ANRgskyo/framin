@@ -12,4 +12,7 @@ class Work < ApplicationRecord
     goods.where(user_id: user.id).exists?
   end
 
+  # 作品・カテゴリー検索
+  scope :get_by_keyword, -> (keyword) {where("work_name LIKE ?", "%#{keyword}%")}
+  scope :get_by_category, -> (category) {where(category_id: category)}
 end

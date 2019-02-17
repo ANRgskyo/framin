@@ -19,7 +19,7 @@
     </div>
     <div class="col-lg-5">
       <h5>Introduction:</h5>
-      <h5><%= user.followed.introduction %></h5>
+      <h5><%= user.followed.introduction.truncate(110)  %></h5>
     </div>
     <div class="col-lg-2">
       <section id="user_<%= user.follower.id %>">

@@ -1,73 +1,79 @@
 <div class="container">
-  <%= search_form_for @qa, url: search_index_path do |f| %>
-    <div class="row">
-    <%= f.search_field :name_cont, class: "col-lg-8" %>
-    <%= button_tag type: 'submit', class: "btn btn-primary" do %>
-       <%= fa_icon("search", class: "icon4") %>
+
+  <!-- 検索フォーム -->
+  <%= form_with url:search_index_path, method: :get, local: true do |f| %>
+    <%= f.select :table_name, [["Work","Work"],["User","User"]], class: "form-control" %>
+    <% if @table_name == 'Work' %>
+    <%= f.collection_select :category, Category.all, :id, :category_name, :prompt => "Category", class: "col-lg-3" %>
     <% end %>
-    </div>
+    <%= f.text_field :keyword, palceholder: "search", class: "col-lg-9" %>
+    <%= button_tag :type => "submit", :class =>"btn btn-primary" do %>
+    <%= fa_icon("search", class:"icon4") %>
+    <% end %>
   <% end %>
 
-<br>
-  <% @users.each do |user| %>
-  <div class="row">
-  	<%= link_to user_path(user.id) do %>
-  	<div class="col-lg-3">
-      <%= attachment_image_tag user, :image, :fill, 200, 200, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
-    </div>
+
+<!-- 検索結果 -->
+
+  <% @searched.each do |s| %>
+
+    <!-- ユーザ検索結果表示 -->
+    <% if @table_name == 'User' %>
+
+      <br>
+      <div class="row">
+  	    <%= link_to user_path(s.id) do %>
+  	    <div class="col-lg-3">
+          <%= attachment_image_tag s, :image, :fill, 200, 200, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
+        </div>
+        <% end %>
+        <div class="col-lg-2">
+          <h5>User Name:</h5>
+          <h5><%= s.name %></h5>
+        </div>
+        <div class="col-lg-4">
+          <h5>Introduction:</h5>
+          <h5><%= s.introduction.truncate(110) %></h5>
+        </div>
+        <div class="col-lg-2">
+          <section id="user_<%= s.id %>">
+          <%= render 'users/follow_form', user: s if signed_in? %>
+          </section>
+        </div>
+        <div class="col-lg-12" style="border-bottom: solid 3px #C0C0C0;"></div>
+      </div>
+
+    <% else %>
+
+      <!-- 作品検索結果 -->
+      <br>
+      <div class="row">
+  	    <%= link_to work_path(s.id) do %>
+  	    <div class="col-lg-3">
+          <%= attachment_image_tag s, :image, :fill, 200, 200, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
+        </div>
+        <% end %>
+        <div class="col-lg-2">
+          <h5>Title:</h5>
+          <h5><%= s.work_name %></h5>
+        </div>
+        <div clas="col-lg-4">
+          <h5>User name:</h5>
+          <h5><%= s.user.name %></h5>
+        </div>
+        <div class="col-lg-5">
+          <h5>Background:</h5>
+          <h5><%= s.background.truncate(110) %></h5>
+        </div>
+        <div class="col-lg-12" style="border-bottom: solid 3px #C0C0C0;"></div>
+      </div>
+
     <% end %>
-    <div class="col-lg-2">
-      <h5>User Name:</h5>
-      <h5><%= user.name %></h5>
-    </div>
-    <div class="col-lg-5">
-      <h5>Introduction:</h5>
-      <h5><%= user.introduction %></h5>
-    </div>
-    <div class="col-lg-2">
-      <section id="user_<%= user.id %>">
-      <%= render 'users/follow_form', user: user if signed_in? %>
-      </section>
-    </div>
-    <div class="col-lg-12" style="border-bottom: solid 3px #C0C0C0;"></div>
-  </div>
   <% end %>
-    </div>
+
 </div>
 
 
 
 
 
-
-
-<div class="container">
-  <%= search_form_for @q, url: search_index_path do |f| %>
-    <div class="row">
-    <%= f.search_field :work_name_cont, class: "col-lg-8" %>
-    <%= button_tag type: 'submit', class: "btn btn-primary" do %>
-       <%= fa_icon("search", class: "icon4") %>
-    <% end %>
-    </div>
-  <% end %>
-
-<br>
-  <% @works.each do |work| %>
-  <div class="row">
-  	<%= link_to work_path(work.id) do %>
-  	<div class="col-lg-3">
-      <%= attachment_image_tag work, :image, :fill, 200, 200, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
-    </div>
-    <% end %>
-    <div class="col-lg-2">
-      <h5>Title:</h5>
-      <h5><%= work.work_name %></h5>
-    </div>
-    <div class="col-lg-5">
-      <h5>Background:</h5>
-      <h5><%= work.background %></h5>
-    </div>
-    <div class="col-lg-12" style="border-bottom: solid 3px #C0C0C0;"></div>
-    <% end %>
-    </div>
-</div>
