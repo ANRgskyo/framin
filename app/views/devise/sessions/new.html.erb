@@ -1,7 +1,7 @@
 <div class="container">
 
-  <div class="col-lg-2 offset-lg-2">
-  <h1>Log in</h1>
+  <div class="col-lg-5 offset-lg-2">
+  <h1><strong>Log in</strong></h1>
   </div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -39,7 +39,7 @@
 <!-- ログインボタン -->
   <div class="login_actions">
     <div class="col-lg-2 offset-lg-6">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: "btn btn-dark" %>
     </div>
   </div>
 <% end %>

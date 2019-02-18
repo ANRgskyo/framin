@@ -43,8 +43,10 @@ class ShoppingCart::CartOrdersController < ApplicationController
     shoppingcart = ShoppingCart.find(params[:id])
     shoppingcart.is_active = false
     shoppingcart.update(shoppingcart_params)
-
-
+    # ショッピングカート新規作成
+    @shoppingcart = ShoppingCart.new
+    @shoppingcart.user_id = current_user.id
+    @shoppingcart.save
 
   end
 

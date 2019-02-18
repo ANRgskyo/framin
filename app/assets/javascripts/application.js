@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require rails-ujs
-//= require bxslider
 //= require activestorage
 //= require turbolinks
 //= require popper
@@ -21,7 +20,7 @@
 
 
 // ラジオボタン、デザイン料表示非表示
-$(function() {
+document.addEventListener("turbolinks:load",function() {
   $('input[id=isRadio]').change( function(){
     // 表示・非表示切り替え
     $('#workprice').toggle();
@@ -33,7 +32,7 @@ $(function() {
 
 // works作品表示変換
 // 遷移後の処理
-$(function(){
+document.addEventListener("turbolinks:load",function(){
     $(document).ready(function(){
         $('.work-scroll').hide();
         $('.box-mayworks').hide();
@@ -42,7 +41,7 @@ $(function(){
 });
 
 // icon1
-$(function(){
+document.addEventListener("turbolinks:load",function(){
     $('.icon1').mouseover(function(){
         $('.icon1').css({'color': '#FFD700'});
     });
@@ -59,7 +58,7 @@ $(function(){
 });
 
 // icon2
-$(function(){
+document.addEventListener("turbolinks:load",function(){
     $('.icon2').mouseover(function(){
         $('.icon2').css({'color': '#FFD700'});
     });
@@ -76,7 +75,7 @@ $(function(){
 });
 
 // icon3
-$(function(){
+document.addEventListener("turbolinks:load",function(){
     $('.icon3').mouseover(function(){
         $('.icon3').css({'color': '#FFD700'});
     });

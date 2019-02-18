@@ -9,8 +9,98 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+
+<% if user_signed_in? %>
+  <header>
+    <nav class="navbar nav-fill" style="background-color: #000099; border-radius: 0 0 15px 15px;">
+
+      <%= link_to new_work_path, method: :get do %>
+        <h1 class="text-white nav-item" ><%= fa_icon("plus-square", class:"icon5") %></h1>
+      <% end %>
+      <button type="button" class="navbar-toggler nav-item" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent">
+        <h1 class="headline display-4 text-white nav-item"><strong>F<span style="border-bottom: solid 5px #BB0000;">ramin&nbsp;</span></strong></h1>
+      </button>
+      <%= link_to search_index_path, method: :get do %>
+        <h1 class="text-white"><%= fa_icon("search", class:"icon6") %></h1>
+      <% end %>
+
+      <div class="dropdown">
+        <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink">
+          <h3 class="text-white"><%= current_user.name %></h3>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to config_index_path do %>
+          <p class="dropdown-item" href="#">User設定</p>
+          <% end %>
+          <a class="dropdown-item" href="#">退会</a>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="collapse" id="navbarToggleExternalContent">
+      <nav class="navbar nav-fill" style="background-color: #DCDCDC; border-radius: 15px;">
+
+        <% cart = ShoppingCart.find_by(user_id: current_user.id, is_active: true) %>
+        <%= link_to root_path do %>
+        <h3 class="text-dark">Top</h3>
+        <% end %>
+        <%= link_to my_work_path(current_user.id) do %>
+        <h3 class="text-dark">My Works</h3>
+        <% end %>
+        <%= link_to user_path(current_user.id) do %>
+        <h3 class="text-dark">My Page</h3>
+        <% end %>
+        <a class="nav-link" href="<%= shopping_cart_shopping_cart_path(cart.id) %>">
+        <h3 class="text-dark">My Cart</h3>
+        </a>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+        <h3 class="text-dark">Log out</h3>
+        <% end %>
+
+      </nav>
+    </div>
+
+  </header>
+
+<% else %>
+
+  <header>
+    <nav class="navbar nav-fill" style="background-color: #000099; border-radius: 0 0 15px 15px;">
+
+      <button type="button" class="navbar-toggler nav-item" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent">
+        <h1 class="headline display-4 text-white nav-item"><strong>F<span style="border-bottom: solid 5px #BB0000;">ramin&nbsp;</span></strong></h1>
+      </button>
+
+    </nav>
+
+    <div class="collapse" id="navbarToggleExternalContent">
+      <nav class="navbar nav-fill" style="background-color: #DCDCDC; border-radius: 15px;">
+
+        <%= link_to root_path do %>
+        <h3 class="text-dark">Top</h3>
+        <% end %>
+        <h3><a class="nav-link text-dark" href="<%= new_user_session_path %>">
+          Log in
+        </a></h3>
+        <h3><a class="nav-link text-dark" href="<%= new_user_registration_path %>">
+          Sign up
+        </a></h3>
+      </nav>
+    </div>
+
+  </header>
+
+<% end %>
+
+<br><br><br>
     <%= yield %>
+
+  <br><br><br><br><br>
+  <footer class="bg-dark text-center h-50">
+    <p class="text-white align-middle">© 2019 Copyright Text</p>
+  </footer>
+
   </body>
 </html>
