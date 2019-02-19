@@ -44,12 +44,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :image_id
       t.boolean :is_active, null: false, default: "true"
       t.boolean :admin, null: false, default: "false"
-      t.datetime :deleted
+      t.datetime :deleted_at
       t.timestamps null: false
     end
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
+    add_index :users, :deleted_at
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end

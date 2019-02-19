@@ -33,6 +33,6 @@ Size.create(
 	  {:size => "B2",:price => '1690'},
 	  {:size => "A1",:price => '1990'},
 	  {:size => "B1",:price => '2790'},
-	  {:size => "ポストカード", :price => '820', :quantity => '10'},
+	  {:size => "ポストカード", :price => '820', :quantity => '9'},
 	]
 )

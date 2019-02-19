@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   attachment :image
 
+  # 論理削除機能
+  acts_as_paranoid
 
   has_many :active_follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_follows, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy

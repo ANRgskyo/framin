@@ -77,7 +77,7 @@
   <!-- 注文ボタン -->
   	<div class="col-lg-4 offset-lg-10">
       <% if @shoppingcart.is_active == true && @credit.empty? == false %>
-      <button type="button" data-toggle="modal" data-target="#myModal">
+      <button type="button" data-toggle="modal" data-target="#myModal2">
       <%= sf.submit "注文", class: "btn btn-primary", toggle: "modal", target: "#myModal" %>
       </button>
       <% end %>
@@ -89,7 +89,7 @@
 </div>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">

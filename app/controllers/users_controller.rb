@@ -11,7 +11,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # ユーザ退会機能
   def destroy
+    @user = User.find(current_user.id)
+    @user.destroy
+    redirect_to root_path
   end
 
   # ユーザ編集機能
@@ -22,12 +26,6 @@ class UsersController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def show_cancel
-  end
-
-  def update_cancel
   end
 
   # フォロー機能

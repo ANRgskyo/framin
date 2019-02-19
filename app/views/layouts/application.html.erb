@@ -11,6 +11,8 @@
   </head>
   <body>
 
+
+<!-- ログイン時表示 header -->
 <% if user_signed_in? %>
   <header>
     <nav class="navbar nav-fill" style="background-color: #000099; border-radius: 0 0 15px 15px;">
@@ -25,6 +27,7 @@
         <h1 class="text-white"><%= fa_icon("search", class:"icon6") %></h1>
       <% end %>
 
+      <!-- ドロップダウン表示 -->
       <div class="dropdown">
         <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink">
           <h3 class="text-white"><%= current_user.name %></h3>
@@ -33,7 +36,9 @@
           <%= link_to config_index_path do %>
           <p class="dropdown-item" href="#">User設定</p>
           <% end %>
-          <a class="dropdown-item" href="#">退会</a>
+          <h6 data-toggle="modal" data-target="#myModal1">
+          <p class="dropdown-item">退会</p>
+          </h6>
         </div>
       </div>
 
@@ -62,31 +67,46 @@
       </nav>
     </div>
 
+    <!-- モーダルウィンドウ退会表示 -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <span>&nbsp;</span>
+          <div class="container">
+            <h6>退会されるとこれまでの購入履歴・販売履歴・投稿画像などなくなりますがよろしいでしょうか？</h6>
+          </div>
+          <div class="modal-body row">
+            <div class="col-lg-5 offset-lg-2">
+            <%= link_to '退会', user_path(current_user.id), method: :delete, class: "btn btn-danger"%>
+            </div>
+            <div class="col-lg-3">
+            <%= link_to '退会しない', user_path(current_user.id), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
   </header>
 
+<!-- ログアウト時表示header -->
 <% else %>
 
   <header>
-    <nav class="navbar nav-fill" style="background-color: #000099; border-radius: 0 0 15px 15px;">
 
+    <nav class="navbar nav-fill" style="background-color: #000099; border-radius: 0 0 15px 15px;">
       <button type="button" class="navbar-toggler nav-item" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent">
         <h1 class="headline display-4 text-white nav-item"><strong>F<span style="border-bottom: solid 5px #BB0000;">ramin&nbsp;</span></strong></h1>
       </button>
-
     </nav>
 
     <div class="collapse" id="navbarToggleExternalContent">
       <nav class="navbar nav-fill" style="background-color: #DCDCDC; border-radius: 15px;">
-
         <%= link_to root_path do %>
         <h3 class="text-dark">Top</h3>
         <% end %>
-        <h3><a class="nav-link text-dark" href="<%= new_user_session_path %>">
-          Log in
-        </a></h3>
-        <h3><a class="nav-link text-dark" href="<%= new_user_registration_path %>">
-          Sign up
-        </a></h3>
+        <h3><a class="nav-link text-dark" href="<%= new_user_session_path %>">Log in</a></h3>
+        <h3><a class="nav-link text-dark" href="<%= new_user_registration_path %>">Sign up</a></h3>
       </nav>
     </div>
 
@@ -95,8 +115,13 @@
 <% end %>
 
 <br><br><br>
+
+
     <%= yield %>
 
+
+
+<!-- footer部分 -->
   <br><br><br><br><br>
   <footer class="bg-dark text-center h-50">
     <p class="text-white align-middle">© 2019 Copyright Text</p>
