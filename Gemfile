@@ -73,7 +73,6 @@ gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'pry-byebug'
 gem 'pry-rails'
-gem 'ransack'
 gem 'paranoia'
-gem 'bxslider-rails'
+gem 'cancancan', '~> 2.0'
 

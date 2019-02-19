@@ -36,9 +36,15 @@
           <%= link_to config_index_path do %>
           <p class="dropdown-item" href="#">User設定</p>
           <% end %>
+          <% if current_user.try(:admin?) %>
+          <%= link_to rails_admin_path do %>
+          <p class="dropdown-item">管理者画面</p>
+          <% end %>
+          <% else %>
           <h6 data-toggle="modal" data-target="#myModal1">
           <p class="dropdown-item">退会</p>
           </h6>
+          <% end %>
         </div>
       </div>
 

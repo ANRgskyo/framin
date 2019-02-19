@@ -1,23 +1,11 @@
 Rails.application.routes.draw do
+  # admin
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  # user sign-up
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
   }
-
-  # admin/
-  namespace :admin do
-     # orders
-    get 'order/index', to:'orders#index'
-    patch 'order/index', to: 'orders#update'
-    get 'order/:id', to: 'orders#show'
-    patch 'order/:id', to: 'orders#co_update'
-     # payments
-    get 'payment', to: 'payments#index'
-    patch 'payment', to: 'payments#update'
-  end
-
-  # admins
-  get '/admin', to: 'admins#index',as: :admin_index
 
   # search
   get '/search', to: 'searchs#index',as: :search_index
