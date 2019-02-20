@@ -1,11 +1,23 @@
+<br><br>
 <div class="container">
 
   <div class="row col-lg-3 offset-lg-2">
   <h1><strong>Works</strong></h1>
   </div>
 
+  <!-- エラーメッセージ -->
+  <div class="error-text offset-lg-3">
+    <% if @work.errors.any? %>
+      <h6 class="text-danger"><%= @work.errors.count %>件のエラーが発生しました</h6>
+      <% @work.errors.full_messages.each do |message| %>
+        <h6 class="text-danger"><%= message %></h6>
+      <% end %>
+    <% end %>
+  </div>
+
 <%= form_for(@work) do |w| %>
 
+<br><br>
 <!-- 作品画像投稿 -->
 <div class="row">
   <div class="col-lg-3 offset-lg-3">

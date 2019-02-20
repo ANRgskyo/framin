@@ -5,7 +5,7 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 　<!-- エラーメッセージ -->
-  <%= devise_error_messages! %>
+  <h6 class="text-danger"><%= devise_error_messages! %></h6>
 
 <!-- 名前入力 -->
   <div class="namse_field">

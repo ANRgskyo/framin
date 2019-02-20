@@ -7,7 +7,7 @@
     <%= f.collection_select :category, Category.all, :id, :category_name, :prompt => "Category", class: "col-lg-3" %>
     <% end %>
     <%= f.text_field :keyword, palceholder: "search", class: "col-lg-9" %>
-    <%= button_tag :type => "submit", :class =>"btn btn-primary" do %>
+    <%= button_tag type: "submit", class: "btn btn-primary col-lg-1" do %>
     <%= fa_icon("search", class:"icon4") %>
     <% end %>
   <% end %>
@@ -24,7 +24,7 @@
       <div class="row">
   	    <%= link_to user_path(s.id) do %>
   	    <div class="col-lg-3">
-          <%= attachment_image_tag s, :image, :fill, 200, 200, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
+          <%= attachment_image_tag s, :image, :fill, 200, 200, fortmat: "jpg", fallback: "no-user-image.jpg", size: "200x200", class: "user-image-work" %>
         </div>
         <% end %>
         <div class="col-lg-2">
@@ -50,7 +50,7 @@
       <div class="row">
   	    <%= link_to work_path(s.id) do %>
   	    <div class="col-lg-3">
-          <%= attachment_image_tag s, :image, :fill, 200, 200, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
+          <%= attachment_image_tag s, :image, :fill, 200, 200, fortmat: "jpg", fallback: "no-user-image.jpg", size: "200x200", class: "user-image-work" %>
         </div>
         <% end %>
         <div class="col-lg-2">

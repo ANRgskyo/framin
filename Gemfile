@@ -75,4 +75,5 @@ gem 'pry-byebug'
 gem 'pry-rails'
 gem 'paranoia'
 gem 'cancancan', '~> 2.0'
+gem 'validates_timeliness', '~>3.0'
 

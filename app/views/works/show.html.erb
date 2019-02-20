@@ -2,10 +2,10 @@
 
   <!-- 作品画像表示 -->
   <div class="col-lg-5 offset-lg-3">
-    <%= attachment_image_tag @work, :image, :fill, 500, 500, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+    <%= attachment_image_tag @work, :image, :fill, 500, 500, fortmat: "jpg", fallback: "no-user-image.jpg" %>
     <!-- 作品タイトル -->
     <div class="row">
-    <h4 class="work-user-name col-lg-9"><%= @work.work_name %></h4>
+      <h4 class="work-user-name col-lg-9"><%= @work.work_name %></h4>
 
     <!-- いいね機能画面表示 -->
       <% if @work.favorited_by?(current_user) %>
@@ -26,10 +26,11 @@
 
 
   <!-- 背景説明画面 -->
-  <h4>Background</h4>
+  <h4><strong>Background</strong></h4>
   <div class="col-lg-12 offset-lg-1">
     <%= @work.background %>
   </div>
+
 
   <br>
   <!-- デザイン料画面 -->
@@ -40,17 +41,23 @@
   <h4>¥<%= @work.price %></h4>
   </div>
   <!-- カート追加ボタン -->
-  <%= link_to 'Add to Cart', in_cart_work_path(@work.id), method: :post, class: 'btn btn-warning offset-lg-9'%>
+  <div class="add-to-cart">
+  <%= link_to 'Add to Cart', in_cart_work_path(@work.id), method: :post, class: 'btn btn-warning offset-lg-2 col-lg-8'%>
   <% end %>
+  </div>
 
   <!-- ログイン者のみ表示 -->
   <% if @work.user_id == current_user.id %>
   <!-- 作品編集ボタン -->
+  <div class="work-edit">
   <%= link_to '作品編集', edit_work_path(@work.id), class: 'btn btn-light offset-lg-11'%>
+  </div>
 
   <!-- 作品削除ボタン -->
+  <div class="work-destroy">
   <%= link_to '作品削除', work_path(@work.id), method: :delete, class: 'btn btn-danger offset-lg-11', "data-confirm" => "Are you sure?" %>
   <% end %>
+  </div>
 
 
 </div>

@@ -9,8 +9,11 @@ class Config::BanksController < ApplicationController
   def bank_create
     @bank =Bank.new(bank_params)
     @bank.user_id = current_user.id
-    @bank.save
-    redirect_to config_index_path
+    if @bank.save
+       redirect_to config_index_path
+    else
+       render :bank_new
+    end
   end
 
   private

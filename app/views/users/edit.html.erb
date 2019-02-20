@@ -4,11 +4,21 @@
   <h1><strong>User edit</strong></h1>
   </div>
 
+  <!-- エラーメッセージ -->
+  <div class="error-text offset-lg-3">
+    <% if @user.errors.any? %>
+      <h6 class="text-danger"><%= @user.errors.count %>件のエラーが発生しました</h6>
+      <% @user.errors.full_messages.each do |message| %>
+        <h6 class="text-danger"><%= message %></h6>
+      <% end %>
+    <% end %>
+  </div>
+
   <%= form_for(@user) do |f| %>
 
 <!-- ユーザ画像表示 -->
   <div class="row col-lg-3 offset-lg-4">
-  <%= attachment_image_tag @user, :image, :fill, 250, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
+  <%= attachment_image_tag @user, :image, :fill, 250, 300, fortmat: "jpg", fallback: "no-user-image.jpg", size: "250x300", class: "user-image-work" %>
   </div>
 
  <br>

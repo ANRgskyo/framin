@@ -1,12 +1,12 @@
 <!-- ユーザー表示 -->
-  <strong><h5>My Collections</h5></strong>
+  <h5><strong>My Collections</strong></h5>
 
 <div class="clearfix">
   <div class="row col-lg-3 myworks_user">
     <%= link_to user_path(@user.id) do %>
-    <%= attachment_image_tag @user, :image, :fill, 120, 120, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class:'user-image-work' %>
+    <%= attachment_image_tag @user, :image, :fill, 120, 120, fortmat: "jpg", fallback: "no-user-image.jpg", size: "120x120", class:'user-image-work' %>
     <% end %>
-    <p><%= @user.name %></p>
+    <h4><strong><%= @user.name %></strong></h4>
   </div>
 
   <!-- 画面切り替え表示 -->
@@ -27,7 +27,7 @@
       <!-- 作品画像表示 -->
        <%= link_to work_path(w.id) do %>
        <%= attachment_image_tag w, :image, :fill, 600, 600, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
-         <h4 class="work-user-name"><%= w.work_name %></h4>
+         <h4 class="work-user-name text-dark"><%= w.work_name %></h4>
        <% end %>
       <!-- Good機能 -->
        <div class="favorireds">
@@ -53,7 +53,7 @@
 	<% @works.each do |w| %>
 	  <%= link_to work_path(w.id) do %>
 	  <%= attachment_image_tag w, :image, :fill, 800, 800, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
-	    <h4 class="work-user-name"><%= w.work_name %></h4>
+	    <h4 class="work-user-name text-dark"><%= w.work_name %></h4>
 	  <% end %>
     <!-- Good機能 -->
 	  <% if w.favorited_by?(current_user) %>
@@ -76,7 +76,7 @@
 	 <div class="works">
 	  <%= link_to work_path(w.id) do %>
 	  <%= attachment_image_tag w, :image, :fill, 300, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class:'work-box' %>
-	    <h4 class="work-user-name work-box"><%= w.work_name %></h4>
+	    <h4 class="work-user-name work-box text-dark"><%= w.work_name %></h4>
 	  <% end %>
       <!-- Good機能  -->
 	 <% if w.favorited_by?(current_user) %>

@@ -25,8 +25,11 @@ class WorksController < ApplicationController
   def create
     @work =Work.new(work_params)
     @work.user_id = current_user.id
-    @work.save
-    redirect_to user_path(current_user.id)
+    if @work.save
+       redirect_to user_path(current_user.id)
+    else
+       render :new
+    end
   end
 
   # 作品編集機能
@@ -35,7 +38,7 @@ class WorksController < ApplicationController
     if @work.update(work_params)
        redirect_to work_path(@work.id)
     else
-      render :edit
+       render :edit
     end
   end
 

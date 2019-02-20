@@ -4,11 +4,21 @@
   <h1><strong>Works edit</strong></h1>
   </div>
 
+  <!-- エラーメッセージ -->
+  <div class="error-text offset-lg-3">
+    <% if @work.errors.any? %>
+      <h6 class="text-danger"><%= @work.errors.count %>件のエラーが発生しました</h6>
+      <% @work.errors.full_messages.each do |message| %>
+        <h6 class="text-danger"><%= message %></h6>
+      <% end %>
+    <% end %>
+  </div>
+
 <%= form_for @work, url: work_path(params[:id]), method: :PATCH do |w| %>
 
 <!-- 作品画像表示 -->
 <div class="row col-lg-3 offset-lg-4">
-  <%= attachment_image_tag @work, :image, :fill, 350, 350, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+  <%= attachment_image_tag @work, :image, :fill, 350, 350, fortmat: "jpg", fallback: "no-user-image.jpg" %>
 </div>
 
 <br>

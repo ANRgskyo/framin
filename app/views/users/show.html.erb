@@ -1,9 +1,10 @@
+<br><br>
 <div class="container">
 
   <div class="row">
     <!-- ユーザ画像表示 -->
     <div class="row col-lg-3 offset-lg-3">
-    <%= attachment_image_tag @user, :image, :fill, 250, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class: "user-image-work" %>
+    <%= attachment_image_tag @user, :image, :fill, 250, 300, fortmat: "jpg", fallback: "no-user-image.jpg", size: "250x300",  class: "user-image-work" %>
     </div>
 
     <!-- フォロー・フォロワー・作品数表示 -->

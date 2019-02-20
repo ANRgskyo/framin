@@ -4,6 +4,16 @@
   <h1><strong>銀行振込先</strong></h1>
   </div>
 
+  <!-- エラーメッセージ -->
+  <div class="error-text offset-lg-3">
+    <% if @bank.errors.any? %>
+      <h6 class="text-danger"><%= @bank.errors.count %>件のエラーが発生しました</h6>
+      <% @bank.errors.full_messages.each do |message| %>
+        <h6 class="text-danger"><%= message %></h6>
+      <% end %>
+    <% end %>
+  </div>
+
 <%= form_for @bank, url: config_bank_path do |b| %>
 
 <br>

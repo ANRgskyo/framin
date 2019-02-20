@@ -4,6 +4,16 @@
   <h1><strong>Credit Card edit</strong></h1>
   </div>
 
+  <!-- エラーメッセージ -->
+  <div class="error-text offset-lg-3">
+    <% if @credit.errors.any? %>
+      <h6 class="text-danger"><%= @credit.errors.count %>件のエラーが発生しました</h6>
+      <% @credit.errors.full_messages.each do |message| %>
+        <h6 class="text-danger"><%= message %></h6>
+      <% end %>
+    <% end %>
+  </div>
+
 <%= form_for @credit, url: config_credit_path(params[:id]), method: :PATCH do |c| %>
 
 <br>

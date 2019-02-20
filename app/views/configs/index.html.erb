@@ -1,3 +1,4 @@
+<br>
 <div class="container">
 
   <div class="row col-lg-5 offset-lg-4">
@@ -7,19 +8,28 @@
   <!-- クレジットカード登録一覧 -->
   <% @credit.each do |c| %>
   <div class="row offset-lg-4">
-  <h4>**********<%= c.card_number.slice(5..8) %>クレジット</h4>
+    <% if c.card_number.slice(0..1) == "35" %>
+      <h4>JCB**********<%= c.card_number.slice(11..15) %>クレジット</h4>
+    <% elsif c.card_number.slice(0..1).in?([ "45", "42", "47", "49"]) %>
+      <h4>VISA**********<%= c.card_number.slice(11..15) %>クレジット</h4>
+    <% elsif c.card_number.slice(0..1).in?([ "51", "52", "53", "54"]) %>
+      <h4>Master**********<%= c.card_number.slice(11..15) %>クレジット</h4>
+    <% else %>
+      <h4>**************<%= c.card_number.slice(11..15) %>クレジット</h4>
+    <% end %>
     <div class="row col-lg-2 offset-lg-3">
     <%= link_to 'Card編集', edit_config_credit_path(c.id), class: 'btn btn-light' %>
     </div>
   </div>
   <% end %>
 
+  <br>
   <!-- カード追加ボタン -->
   <div class="row">
   <%= link_to 'Card追加', config_credit_new_path, class: 'btn btn-primary offset-lg-5' %>
   </div>
 
-  <br>
+  <br><br><br>
   <!-- 銀行振込先表示 -->
   <div class="row col-lg-3 offset-lg-4">
   <h1><strong>銀行振込先</strong></h1>

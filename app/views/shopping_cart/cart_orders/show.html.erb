@@ -4,6 +4,16 @@
   <h1><strong>注文確認</strong></h1>
   </div>
 
+  <!-- エラーメッセージ -->
+  <div class="error-text offset-lg-3">
+    <% if @order.errors.any? %>
+      <h6 class="text-danger"><%= @order.errors.count %>件のエラーが発生しました</h6>
+      <% @order.errors.full_messages.each do |message| %>
+        <h6 class="text-danger"><%= message %></h6>
+      <% end %>
+    <% end %>
+  </div>
+
   <!-- ライン -->
   <div class="col-lg-12" style="border-bottom: solid 4px #C0C0C0;"></div>
 
@@ -20,16 +30,26 @@
     <div class="col-lg-12">
       <h3>支払い方法</h3>
       <% if @credit.empty? == false %>
-      <% @credit.each do |c| %>
-      <h5><%= sf.radio_button :credit_card_id, c.id, {:checked => true}%>*******<%= c.card_number.slice(5..8) %>クレジットカード</h5>
-      <% end %>
+        <% @credit.each do |c| %>
+
+          <% if c.card_number.slice(0..1) == "35" %>
+          <h5><%= sf.radio_button :credit_card_id, c.id, {:checked => true}%>JCB*******<%= c.card_number.slice(11..15) %>クレジットカード</h5>
+          <% elsif c.card_number.slice(0..1).in?([ "45", "42", "47", "49"]) %>
+          <h5><%= sf.radio_button :credit_card_id, c.id, {:checked => true}%>VIZA*******<%= c.card_number.slice(11..15) %>クレジットカード</h5>
+          <% elsif c.card_number.slice(0..1).in?([ "51", "52", "53", "54"]) %>
+          <h5><%= sf.radio_button :credit_card_id, c.id, {:checked => true}%>Master*******<%= c.card_number.slice(11..15) %>クレジットカード</h5>
+          <% else %>
+          <h5><%= sf.radio_button :credit_card_id, c.id, {:checked => true}%>***********<%= c.card_number.slice(11..15) %>クレジットカード</h5>
+          <% end %>
+
+        <% end %>
       <% else %>
       <h4> クレジットカードの登録をお願いします。</h4>
       <% end %>
     </div>
   </div>
 
-<br>
+  <br>
   <div class="row">
   	<!-- お届け日表示 -->
   	<div class="col-lg-3 offset-lg-3">
@@ -71,7 +91,7 @@
 
   <!-- 合計金額表示 -->
   <div class="col-lg-5 offset-lg-8">
-　<h3><u>合計¥ <%= @pricesums %></u></h3>
+　<h2><strong><u>合計¥ <%= @pricesums %></u></strong></h2>
   </div>
 
   <!-- 注文ボタン -->
@@ -88,29 +108,24 @@
 
 </div>
 
-
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3><strong>ご注文完了しました。</strong></3>
-        <h3><strong>受付番号: <%= @shoppingcart.id %></strong></h3>
-      </div>
-      <div class="modal-footer">
-        <%= link_to 'To My page', user_path(current_user.id), class:"btn btn-primary", method: :get %>
-      </div><!-- /.modal-footer -->
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-
-
-
-
+<!-- モーダルウィンドウ -->
+<% if @order.errors.empty? == true %>
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h3><strong>ご注文完了しました。</strong></3>
+          <h3><strong>受付番号: <%= @shoppingcart.id %></strong></h3>
+        </div>
+        <div class="modal-footer">
+          <%= link_to 'To My page', user_path(current_user.id), class:"btn btn-primary", method: :get %>
+        </div><!-- /.modal-footer -->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+<else>
+<div></div>
+<% end %>
 
 
 
-
-
-</div>

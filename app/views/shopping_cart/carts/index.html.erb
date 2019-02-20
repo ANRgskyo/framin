@@ -13,6 +13,7 @@
 
   <% @cartworks.each do |cw| %>
 
+  <br>
   <!-- 作品画像表示 -->
   <div class="row">
     <div class="col-lg-3">
@@ -22,7 +23,7 @@
 
     <div class="row">
       <!-- 作品枚数変更ボタン -->
-      <div class="col-lg-4 text-lg-center">
+      <div class="col-lg-3 text-lg-center">
 	    <div class="form-group form-inline">
 		  <%= link_to '+', shopping_cart_pass_path(params[:id], cart_work_id: cw.id, status: 0), class:"btn-sm btn-light ", method: :patch %>
 		  <% if cw.quantity >= 2 %>
@@ -35,14 +36,14 @@
 	  </div>
 
 	  <!-- 作品枚数変更後の金額表示 -->
-	  <div class="col-lg-2">
-	    <p>   ¥
+	  <div class="col-lg-3">
+	    <h5><strong>¥
 	    <% if cw.size_id == 10 %>
 	    <%= ((cw.quantity - 1) * (cw.work.price/10)) + ( 82 * (cw.quantity - 1)) + 820 + cw.work.price %>
 	    <% else %>
 		<%= (cw.quantity * cw.work.price) + (cw.size.price*cw.quantity) %>
 		<% end %>
-		</p>
+		</strong></h5>
 	  </div>
 
       <!-- 作品サイズ変更ボタン -->
@@ -58,6 +59,7 @@
 	    <%= link_to '削除', shopping_cart_shopping_work_path(params[:id], cart_work_id: cw.id), class: "btn btn-danger", method: :delete, data: { confirm: 'カートから商品を削除しますか？' } %>
       </div>
     </div>
+
   </div>
 
     <!-- 作品タイトル、ユーザ名表示 -->
@@ -78,9 +80,9 @@
 
     <!-- 作品全合計金額表示 -->
     <div class="col-lg-9 offset-lg-10">
-	  <h2>合計 ¥
+	  <h2><strong>合計 ¥
 	  <%= @pricesums %>
-	  </h2>
+	  </strong></h2>
 	</div>
 
     <!-- 注文確認ボタン -->
