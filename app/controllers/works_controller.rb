@@ -3,6 +3,11 @@ class WorksController < ApplicationController
   # ユーザ作品詳細表示機能
   def show
     @work = Work.find(params[:id])
+    @sale = CartWork.where(work_id: @work.id)
+    @quantitysum = 0
+    @sale.each do |sa|
+      @quantitysum += sa.quantity
+    end
   end
 
   # 作品編集画面表示
@@ -62,7 +67,7 @@ class WorksController < ApplicationController
     cartwork.work_id = (params[:id])
     shopcart = ShoppingCart.find_by(user_id: current_user.id, is_active: true)
     cartwork.shopping_cart_id = shopcart.id
-    cartwork.size_id = 2
+    cartwork.size_id = 1
     cartwork.save
     redirect_to shopping_cart_shopping_cart_path(shopcart.id)
   end

@@ -2,15 +2,16 @@
 
   <!-- フォロ人数表示 -->
   <div class="col-lg-2 offset-lg-2">
-    <h1 id="following" class="stat"><strong>Follow:<%= @user.following.count %></strong></h1>
+    <h1 class="stat"><strong>Follow:<%= @user.following.count %></strong></h1>
   </div>
 
   <!-- フォロユーザ一覧表示 -->
   <% @users.each do |user| %>
+  <br>
   <div class="row">
     <%= link_to user_path(user.followed.id) do %>
   	<div class="col-lg-3">
-      <%= attachment_image_tag user.followed, :image, :fill, 100, 100, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+      <%= attachment_image_tag user.followed, :image, :fill, 200, 200, fortmat: "jpg", fallback: "no-user-image.jpg", size: "200x200", class: 'user-image-work' %>
     </div>
     <% end %>
     <div class="col-lg-2">
@@ -22,11 +23,12 @@
       <h5><%= user.followed.introduction.truncate(110)  %></h5>
     </div>
     <div class="col-lg-2">
-      <section id="user_<%= user.follower.id %>">
+      <section id="user_<%= user.followed.id %>">
       <%= render 'users/follow_form', user: user.followed if signed_in? %>
       </section>
     </div>
   </div>
+  <div class="col-lg-12" style="border-bottom: solid 3px #C0C0C0;"></div>
   <% end %>
 
   <div class="col-lg-4 offset-lg-5">

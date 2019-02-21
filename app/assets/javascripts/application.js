@@ -20,13 +20,19 @@
 
 
 // ラジオボタン、デザイン料表示非表示
-document.addEventListener("turbolinks:load",function() {
-  $('input[id=isRadio]').change( function(){
-    // 表示・非表示切り替え
-    $('#workprice').toggle();
-  });
-});
 
+
+document.addEventListener("turbolinks:load",function(){
+    $('input[id=isRadio]').change(function(){
+        var inputValue = $(this).val();
+        if(inputValue === "false"){
+          $('#workprice').hide();
+        }else{
+          $('#workprice').show();
+        }
+
+    });
+});
 
 
 

@@ -11,6 +11,8 @@
       <% @order.errors.full_messages.each do |message| %>
         <h6 class="text-danger"><%= message %></h6>
       <% end %>
+      <h3 class="text-danger">受付番号: <%= @shoppingcart.id %>の注文失敗!!</h3>
+      <h4 class="text-danger">日付を変更後、注文し直してください。</h4>
     <% end %>
   </div>
 
@@ -55,6 +57,7 @@
   	<div class="col-lg-3 offset-lg-3">
       <h3>お届け日</h3>
       <%= sf.date_field :date, value: Time.now.strftime("%Y-%m-%d") %>
+      <p>＊本日より4日後からお届け可</p>
     </div>
     <!-- 時間指定表示 -->
     <div class="col-lg-5">
@@ -95,13 +98,17 @@
   </div>
 
   <!-- 注文ボタン -->
-  	<div class="col-lg-4 offset-lg-10">
       <% if @shoppingcart.is_active == true && @credit.empty? == false %>
-      <button type="button" data-toggle="modal" data-target="#myModal2">
-      <%= sf.submit "注文", class: "btn btn-primary", toggle: "modal", target: "#myModal" %>
-      </button>
+        <div class="col-lg-4 offset-lg-10">
+          <button type="button" data-toggle="modal" data-target="#myModal2">
+          <%= sf.submit "注文", class: "btn btn-primary", toggle: "modal", target: "#myModal" %>
+          </button>
+        </div>
+      <% else %>
+        <div class="offset-lg-4">
+          <h4><strong>受付番号:<%= @shoppingcart.id %> 注文完了しました</strong></h4>
+        </div>
       <% end %>
-    </div>
 
 
   <% end %>
@@ -109,7 +116,7 @@
 </div>
 
 <!-- モーダルウィンドウ -->
-<% if @order.errors.empty? == true %>
+
   <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -125,7 +132,7 @@
   </div><!-- /.modal -->
 <else>
 <div></div>
-<% end %>
+
 
 
 

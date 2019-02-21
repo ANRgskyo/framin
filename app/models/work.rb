@@ -9,7 +9,6 @@ class Work < ApplicationRecord
   attachment :image
 
   validates :work_name, presence: true
-  validates :image_id, presence: true
   validates :background, length: { maximum: 900 }
   validates :category_id, presence: true
 

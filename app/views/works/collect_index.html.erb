@@ -23,23 +23,26 @@
 <!-- スライダー作品表示 -->
 <div class="slider work-slider">
   <% @works.each do |w| %>
-    <div>
+    <div class="show-works">
       <!-- 作品画像表示 -->
        <%= link_to work_path(w.id) do %>
-       <%= attachment_image_tag w, :image, :fill, 600, 600, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
-         <h4 class="work-user-name text-dark"><%= w.work_name %></h4>
+         <%= attachment_image_tag w, :image, :fill, 700, 700, fortmat: "jpg", fallback: "no-user-image.jpg", size: "700x700" %>
+         <h4 class="work-user-name text-dark">Title: <%= w.work_name %></h4>
+       <% end %>
+       <%= link_to user_path(w.user_id) do %>
+         <h4 class="user-name text-dark">User Name: <%= w.user.name %></h4>
        <% end %>
       <!-- Good機能 -->
        <div class="favorireds">
-       <% if w.favorited_by?(current_user) %>
-         <%= link_to work_favorite_delete_path(w.id), method: :delete, class: "fav", remote: true do %>
-         <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good -</h5>
+         <% if w.favorited_by?(current_user) %>
+           <%= link_to work_favorite_delete_path(w.id), method: :delete, class: "fav", remote: true do %>
+           <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good -</h5>
+           <% end %>
+         <% else %>
+           <%= link_to work_favorite_new_path(w.id), method: :post, class: "fav", remote: true do %>
+           <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good ＋</h5>
+           <% end %>
          <% end %>
-       <% else %>
-         <%= link_to work_favorite_new_path(w.id), method: :post, class: "fav", remote: true do %>
-         <h5 class="good-button <%= w.id %>"><%= w.goods.count %> Good ＋</h5>
-         <% end %>
-       <% end %>
        </div>
 
     </div>
@@ -52,9 +55,12 @@
   	<!-- 作品画像表示 -->
 	<% @works.each do |w| %>
 	  <%= link_to work_path(w.id) do %>
-	  <%= attachment_image_tag w, :image, :fill, 800, 800, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
-	    <h4 class="work-user-name text-dark"><%= w.work_name %></h4>
+	  <%= attachment_image_tag w, :image, :fill, 900, 900, fortmat: "jpg", fallback: "no-user-image.jpg", size: "900x900" %>
+	    <h4 class="work-user-name text-dark">Title: <%= w.work_name %></h4>
 	  <% end %>
+    <%= link_to user_path(w.user_id) do %>
+      <h4 class="user-name text-dark">User Name: <%= w.user.name %></h4>
+    <% end %>
     <!-- Good機能 -->
 	  <% if w.favorited_by?(current_user) %>
         <%= link_to work_favorite_delete_path(w.id), method: :delete, class: "fav", remote: true do %>
@@ -75,9 +81,12 @@
   <% @works.each do |w| %>
 	 <div class="works">
 	  <%= link_to work_path(w.id) do %>
-	  <%= attachment_image_tag w, :image, :fill, 300, 300, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg", class:'work-box' %>
-	    <h4 class="work-user-name work-box text-dark"><%= w.work_name %></h4>
+	  <%= attachment_image_tag w, :image, :fill, 300, 300, fortmat: "jpg", fallback: "no-user-image.jpg", class: 'work-box', size: "300x300" %>
+	    <h6 class="work-user-name work-box text-dark">Title: <%= w.work_name %></h6>
 	  <% end %>
+    <%= link_to user_path(w.user_id) do %>
+      <h6 class="user-name text-dark">User Name: <%= w.user.name %></h6>
+    <% end %>
       <!-- Good機能  -->
 	 <% if w.favorited_by?(current_user) %>
          <%= link_to work_favorite_delete_path(w.id), method: :delete, class: "fav", remote: true do %>
