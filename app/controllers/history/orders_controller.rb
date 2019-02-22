@@ -1,4 +1,5 @@
 class History::OrdersController < ApplicationController
+  before_action :authenticate_user!
 
   # 購入履歴一覧表示機能
   def index_order

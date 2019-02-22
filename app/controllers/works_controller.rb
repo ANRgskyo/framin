@@ -1,4 +1,5 @@
 class WorksController < ApplicationController
+  before_action :authenticate_user!
 
   # ユーザ作品詳細表示機能
   def show

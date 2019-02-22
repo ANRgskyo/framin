@@ -1,4 +1,5 @@
 class ShoppingCart::CartOrdersController < ApplicationController
+  before_action :authenticate_user!
 
   # 注文確認画面表示
   def show
@@ -9,7 +10,7 @@ class ShoppingCart::CartOrdersController < ApplicationController
     # 合計金額
     @pricesums = 0
   	@cartworks.each do |cw|
-  	  if cw.size_id == 10
+  	  if cw.size_id == 9
 	    price = ((cw.quantity - 1) * (cw.work.price / 10)) + ( 82 * (cw.quantity - 1)) + 820 + cw.work.price
 	    else
 	    price = (cw.quantity * cw.work.price) + (cw.size.price * cw.quantity)
@@ -25,7 +26,7 @@ class ShoppingCart::CartOrdersController < ApplicationController
   	@cartworks = CartWork.where(shopping_cart_id: params[:id])
     # 各作品合計金額保存機能
   	@cartworks.each do |cw|
-  	  if cw.size_id == 10
+  	  if cw.size_id == 9
 	    price = ((cw.quantity - 1) * (cw.work.price / 10)) + ( 82 * (cw.quantity - 1)) + 820 + cw.work.price
 	  else
 	    price = (cw.quantity * cw.work.price) + (cw.size.price * cw.quantity)
@@ -55,7 +56,7 @@ class ShoppingCart::CartOrdersController < ApplicationController
        @cartworks = CartWork.where(shopping_cart_id: @shoppingcart.id)
        @pricesums = 0
        @cartworks.each do |cw|
-         if cw.size_id == 10
+         if cw.size_id == 9
            price = ((cw.quantity - 1) * (cw.work.price / 10)) + ( 82 * (cw.quantity - 1)) + 820 + cw.work.price
          else
            price = (cw.quantity * cw.work.price) + (cw.size.price * cw.quantity)

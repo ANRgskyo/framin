@@ -50,12 +50,12 @@
   <% if @user.id == current_user.id %>
   <!-- フォローしたユーザの作品ボタン -->
   <div class="row">
-    <%= link_to "My Collections", follower_work_path, class: "btn btn-primary btn-block col-lg-6 offset-lg-3" %>
+    <%= link_to "<< My Collections >>", follower_work_path, class: "btn btn-primary btn-block col-lg-6 offset-lg-3" %>
   </div>
   <% else %>
   <!-- ユーザ作品ボタン -->
   <div class="row">
-    <%= link_to "Gallery", my_work_path(@user.id), class: "btn btn-primary btn-block col-lg-6 offset-lg-3" %>
+    <%= link_to "<< Gallery >>", my_work_path(@user.id), class: "btn btn-primary btn-block col-lg-6 offset-lg-3" %>
   </div>
   <% end %>
 

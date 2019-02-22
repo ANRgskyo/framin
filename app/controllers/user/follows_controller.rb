@@ -1,4 +1,5 @@
 class User::FollowsController < ApplicationController
+  before_action :authenticate_user!
 
   # フォロー一覧表示機能
   def fed_index

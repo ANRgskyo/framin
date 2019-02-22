@@ -26,7 +26,12 @@
   	            <%= pc.work.work_name %>
   	            <% end %>
   	        </td>
-  	        <td><%= pc.quantity %>枚</td>
+  	        <td><% if pc.size_id == 9 %>
+                <%= pc.quantity + 9 %>枚
+                <% else %>
+                <%= pc.quantity %>枚
+                <% end %>
+            </td>
             <td><%= pc.size.size %></td>
             <td>¥<%= pc.price %></td>
 

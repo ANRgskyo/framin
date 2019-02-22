@@ -1,4 +1,5 @@
 class ConfigsController < ApplicationController
+  before_action :authenticate_user!
 
   # ユーザ設定画面表示
   def index

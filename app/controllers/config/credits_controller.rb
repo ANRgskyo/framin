@@ -1,4 +1,6 @@
 class Config::CreditsController < ApplicationController
+  before_action :authenticate_user!
+
   # 新規クレジット投稿表示
   def credit_new
     @credit = CreditCard.new

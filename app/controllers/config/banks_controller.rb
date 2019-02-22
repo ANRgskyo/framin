@@ -1,4 +1,5 @@
 class Config::BanksController < ApplicationController
+  before_action :authenticate_user!
 
   # 銀行登録ページ表示機能
   def bank_new

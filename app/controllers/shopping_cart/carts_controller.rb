@@ -1,4 +1,5 @@
 class ShoppingCart::CartsController < ApplicationController
+  before_action :authenticate_user!
 
   # カート表示機能
   def index
@@ -6,7 +7,7 @@ class ShoppingCart::CartsController < ApplicationController
     # 合計計算
   	@pricesums = 0
   	@cartworks.each do |cw|
-  	  if cw.size_id == 10
+  	  if cw.size_id == 9
 	    price = ((cw.quantity - 1) * (cw.work.price / 10)) + ( 82 * (cw.quantity - 1)) + 820 + cw.work.price
 	  else
 	    price = (cw.quantity * cw.work.price) + (cw.size.price * cw.quantity)
