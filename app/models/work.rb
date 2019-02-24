@@ -8,9 +8,11 @@ class Work < ApplicationRecord
 
   attachment :image
 
+  validates_presence_of :image
   validates :work_name, presence: true
   validates :background, length: { maximum: 900 }
   validates :category_id, presence: true
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def favorited_by?(user)
     goods.where(user_id: user.id).exists?

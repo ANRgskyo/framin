@@ -14,6 +14,9 @@ class ShoppingCart::CartsController < ApplicationController
       end
       @pricesums += price
     end
+    if ShoppingCart.find(params[:id]).user_id != current_user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   # サイズ変更機能

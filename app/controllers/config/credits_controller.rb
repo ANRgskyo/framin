@@ -20,6 +20,9 @@ class Config::CreditsController < ApplicationController
   # クレジット編集画面表示
   def edit
     @credit = CreditCard.find(params[:id])
+    if @credit.user_id != current_user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   # クレジット編集機能

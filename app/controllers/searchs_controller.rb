@@ -5,9 +5,9 @@ class SearchsController < ApplicationController
   def index
   	@table_name = params[:table_name]
     if @table_name == 'User'
-      @searched = User.search(params[:keyword])
+      @searched = User.search(params[:keyword]).order(id: "DESC")
     else
-      @searched = Work.all
+      @searched = Work.all.order(id: "DESC")
       if params[:keyword].present? && params[:category].present? == false
       	@searched = @searched.get_by_keyword params[:keyword]
       end

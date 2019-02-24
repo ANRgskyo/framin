@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-light" style="border-radius: 22px 22px 22px 22px;">
 
   <!-- 検索フォーム -->
   <%= form_with url:search_index_path, method: :get, local: true do |f| %>
@@ -22,7 +22,7 @@
 
       <br>
       <div class="row">
-  	    <%= link_to user_path(s.id) do %>
+  	    <%= link_to my_work_path(s.id) do %>
   	    <div class="col-lg-3">
           <%= attachment_image_tag s, :image, :fill, 200, 200, fortmat: "jpg", fallback: "no-user-image.jpg", size: "200x200", class: "user-image-work" %>
         </div>
@@ -71,6 +71,7 @@
     <% end %>
   <% end %>
 
+<br>
 </div>
 
 

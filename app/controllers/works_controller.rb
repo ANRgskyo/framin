@@ -14,11 +14,14 @@ class WorksController < ApplicationController
   # 作品編集画面表示
   def edit
     @work = Work.find(params[:id])
+    if @work.user_id != current_user.id
+      redirect_to my_work_path(current_user.id)
+    end
   end
 
   # 作品表示
   def index
-    @work = Work.where(user_id: params[:id])
+    @work = Work.where(user_id: params[:id]).order(id: "DESC")
     @user = User.find(params[:id])
   end
 
@@ -32,7 +35,7 @@ class WorksController < ApplicationController
     @work =Work.new(work_params)
     @work.user_id = current_user.id
     if @work.save
-       redirect_to user_path(current_user.id)
+       redirect_to my_work_path(current_user.id)
     else
        render :new
     end
@@ -76,7 +79,7 @@ class WorksController < ApplicationController
   # フォローしたユーザの作品表示機能
   def collect_index
     @follow = Follow.where(follower_id: current_user.id).pluck(:followed_id)
-    @works = Work.where(user_id: @follow)
+    @works = Work.where(user_id: @follow).order(id: "DESC")
     @user = User.find(current_user.id)
   end
 

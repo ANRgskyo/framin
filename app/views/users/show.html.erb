@@ -1,5 +1,5 @@
 <br><br>
-<div class="container">
+<div class="container bg-light" style="border-radius: 22px 78px 22px 78px;">
 
   <div class="row">
     <!-- ユーザ画像表示 -->
@@ -23,7 +23,7 @@
       <!-- ユーザ編集ボタン -->
       <!-- ログイン者のみ表示 -->
       <% if @user.id == current_user.id %>
-      <%= link_to "Edit", edit_user_path(@user.id), class: "btn btn-outline-secondary col-lg-9" %>
+      <%= link_to "Edit", edit_user_path(@user.id), class: "btn btn-outline-secondary btn-sm col-lg-9" %>
       <% end %>
       <!-- フォローボタン -->
       <section id="user_<%= @user.id %>">
@@ -50,12 +50,12 @@
   <% if @user.id == current_user.id %>
   <!-- フォローしたユーザの作品ボタン -->
   <div class="row">
-    <%= link_to "<< My Collections >>", follower_work_path, class: "btn btn-primary btn-block col-lg-6 offset-lg-3" %>
+    <%= link_to "<< My Collections >>", follower_work_path, class: "btn btn-primary btn-block btn-lg col-lg-8 offset-lg-2" %>
   </div>
   <% else %>
   <!-- ユーザ作品ボタン -->
   <div class="row">
-    <%= link_to "<< Gallery >>", my_work_path(@user.id), class: "btn btn-primary btn-block col-lg-6 offset-lg-3" %>
+    <%= link_to "<< Gallery >>", my_work_path(@user.id), class: "btn btn-primary btn-block btn-lg col-lg-8 offset-lg-2" %>
   </div>
   <% end %>
 
@@ -63,10 +63,11 @@
   <!-- 購入・販売履歴ボタン -->
   <% if @user.id == current_user.id %>
   <div class="row">
-    <%= link_to "Get history", history_order_path, class: "btn btn-outline-success col-lg-3 offset-lg-3" %>
+    <%= link_to "Get history", history_order_path, class: "btn btn-outline-success btn-sm col-lg-4 offset-lg-2" %>
 
-    <%= link_to "Sale history", history_sale_path, class: "btn btn-outline-warning col-lg-3" %>
+    <%= link_to "Sale history", history_sale_path, class: "btn btn-outline-warning btn-sm col-lg-4" %>
   </div>
   <% end %>
 
+<br>
 </div>

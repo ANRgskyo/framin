@@ -1,5 +1,5 @@
 <br>
-<div class="container">
+<div class="container bg-light" style="border-radius: 22px 22px 22px 22px;">
 
   <div class="row col-lg-5 offset-lg-4">
   <h1><strong>Credit Card</strong></h1>
@@ -18,7 +18,7 @@
       <h4>**************<%= c.card_number.slice(11..15) %>クレジット</h4>
     <% end %>
     <div class="row col-lg-2 offset-lg-3">
-    <%= link_to 'Card編集', edit_config_credit_path(c.id), class: 'btn btn-light' %>
+    <%= link_to 'Card編集', edit_config_credit_path(c.id), class: 'btn btn-outline-secondary' %>
     </div>
   </div>
   <% end %>
@@ -44,8 +44,8 @@
     </h4>
 
     <% if Bank.find_by(user_id: current_user.id).nil? == false %>
-    <div class="row col-lg-2 offset-lg-4">
-    <%= link_to '削除', config_bank_destroy_path, method: :delete, class: 'btn btn-danger', "data-confirm" => "Are you sure?" %>
+    <div class="row col-lg-2 offset-lg-5">
+    <%= link_to 'Delete', config_bank_destroy_path, method: :delete, class: 'btn btn-outline-danger', "data-confirm" => "Are you sure?" %>
     </div>
     <% end %>
 
@@ -53,9 +53,10 @@
 
   <!-- 振込先追加ボタン -->
   <% if Bank.find_by(user_id: current_user.id).nil? == true %>
-  <div class="row">
-  <%= link_to '振込先登録', config_bank_new_path, class: 'btn btn-primary offset-lg-6' %>
+  <div class="row`">
+  <%= link_to '振込先登録', config_bank_new_path, class: 'btn btn-primary offset-lg-5' %>
   </div>
   <% end %>
 
+<br>
 </div>

@@ -20,8 +20,6 @@
 
 
 // ラジオボタン、デザイン料表示非表示
-
-
 document.addEventListener("turbolinks:load",function(){
     $('input[id=isRadio]').change(function(){
         var inputValue = $(this).val();

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-light" style="border-radius: 78px 78px 22px 22px;">
 
   <!-- フォロ人数表示 -->
   <div class="col-lg-2 offset-lg-2">
@@ -9,7 +9,7 @@
   <% @users.each do |user| %>
   <br>
   <div class="row">
-    <%= link_to user_path(user.followed.id) do %>
+    <%= link_to my_work_path(user.followed.id) do %>
   	<div class="col-lg-3">
       <%= attachment_image_tag user.followed, :image, :fill, 200, 200, fortmat: "jpg", fallback: "no-user-image.jpg", size: "200x200", class: 'user-image-work' %>
     </div>
@@ -35,4 +35,5 @@
   <h4><%= paginate @users %></h4>
   </div>
 
+<br>
 </div>

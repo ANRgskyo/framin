@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   # ユーザ編集画面表示
   def edit
     @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   # ユーザ退会機能
