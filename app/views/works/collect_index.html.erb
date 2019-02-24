@@ -1,7 +1,7 @@
 <!-- ユーザー表示 -->
   <h5><strong>My Collections</strong></h5>
 
-<div class="clearfix">
+<div class="clearfix bg-light" style="border-radius: 22px 78px 22px 78px;">
   <div class="row col-lg-3 myworks_user">
     <%= link_to user_path(@user.id) do %>
     <%= attachment_image_tag @user, :image, :fill, 120, 120, fortmat: "jpg", fallback: "no-user-image.jpg", size: "120x120", class:'user-image-work' %>
