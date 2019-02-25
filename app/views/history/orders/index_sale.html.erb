@@ -1,4 +1,4 @@
-<div class="container bg-light" style="border-radius: 22px 78px 22px 78px;">
+<div class="container main1 bg-light">
 
   <div class="col-lg-3 offset-lg-5">
   <h1><strong>売上履歴</strong></h1>
@@ -7,6 +7,7 @@
   <!-- 購入一覧表示 -->
   <div class="col-lg-12">
     <table class="table table-hover">
+
       <thead>
         <tr>
           <th>日付</th>
@@ -17,37 +18,42 @@
           <th>Status</th>
         </tr>
       </thead>
-        <% @cartworks.each do |pc| %>
-          <tbody>
-  	        <tr>
-  	          <td><%= pc.shopping_cart.order.date %> </td>
-  	          <td><%= link_to work_path(pc.work_id) do %>
-  	              <%= pc.work.work_name %>
-  	              <% end %>
-  	          </td>
-  	          <td><% if pc.size_id == 9 %>
-                  <%= pc.quantity + 9 %>
-                  <% else %>
-                  <%= pc.quantity %>枚
-                  <% end %>
-              </td>
-              <td><%= pc.size.size %></td>
-              <td>¥<%= (pc.price * 0.7).to_i %></td>
 
-              <% if pc.sale_status == 1 %>
-                <td>入金待ち</td>
-              <% else %>
-                <td>入金完了</td>
-              <% end %>
+      <% @cartworks.each do |pc| %>
+        <tbody>
+  	      <tr>
+  	        <td><%= pc.shopping_cart.order.date %> </td>
+  	        <td><%= link_to work_path(pc.work_id) do %>
+  	            <%= pc.work.work_name %>
+  	            <% end %>
+  	        </td>
+  	        <td><% if pc.size_id == 9 %>
+                <%= pc.quantity + 9 %>
+                <% else %>
+                <%= pc.quantity %>枚
+                <% end %>
+            </td>
+            <td><%= pc.size.size %></td>
+            <td>¥<%= (pc.price * 0.7).to_i %></td>
 
-  	        </tr>
-          </tbody>
-        <% end %>
+            <% if pc.sale_status == 1 %>
+              <td>入金待ち</td>
+            <% else %>
+              <td>入金完了</td>
+            <% end %>
+
+          </tr>
+        </tbody> 
+      <% end %>
+
     </table>
   </div>
 
+
+  <!-- ページネーション -->
   <div class="col-lg-4 offset-lg-5">
   <h4><%= paginate @cartworks %></h4>
   </div>
+
 
 </div>

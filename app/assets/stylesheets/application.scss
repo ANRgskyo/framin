@@ -84,3 +84,57 @@ h2, h1, h4, h3, h5, h6, .table, btn, p, ul, a {
 
 
 
+/* Contaner */
+.main1 {
+	border-radius: 22px 78px 22px 78px;
+	border-bottom: 8px solid;
+	border-right: 2px solid;
+}
+
+.main2 {
+	border-radius: 22px 22px 22px 22px;
+	border-bottom: 8px solid;
+	border-right: 2px solid;
+}
+
+.main3 {
+	border-radius: 78px 78px 22px 22px;
+	border-bottom: 8px solid;
+	border-right: 2px solid;
+}
+
+
+
+
+/* header */
+.main-header {
+	background-color: #003366;
+	border-radius: 0 0 15px 15px;
+	border-bottom: 5px solid #000077;
+	border-right: 2px solid #000077;
+}
+
+.sub-header{
+	background-color: #DCDCDC;
+	border-radius: 15px;
+	border-bottom: 7px solid #A9A9A9;
+	border-right: 3px solid #A9A9A9;
+}
+
+.modal-content {
+	border-bottom: 10px solid #888888;
+	border-radius: 22px 22px 22px 22px;
+}
+
+
+
+
+/* modal coutam*/
+.modal.fade {
+    transition-duration: 1s;
+}
+
+.modal-backdrop {
+    background-color: #000022;
+}
+

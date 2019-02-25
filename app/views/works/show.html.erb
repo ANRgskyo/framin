@@ -1,13 +1,13 @@
 <div class="container">
 
   <!-- 作品画像表示 -->
-  <div class="col-lg-5 offset-lg-3">
-    <%= attachment_image_tag @work, :image, :fill, 500, 500, fortmat: "jpg", fallback: "no-user-image.jpg" %>
+  <div class="col-lg-6 offset-lg-2">
+    <%= attachment_image_tag @work, :image, :fill, 650, 650, fortmat: "jpg", fallback: "no-user-image.jpg" %>
     <!-- 作品タイトル -->
     <div class="row">
       <h4 class="work-user-name col-lg-9">Title: <%= @work.work_name %></h4>
 
-    <!-- いいね機能画面表示 -->
+      <!-- いいね機能画面表示 -->
       <% if @work.favorited_by?(current_user) %>
         <%= link_to work_favorite_delete_path(@work.id), method: :delete, class: "fav", remote: true do %>
         <h5 class="good-button <%= @work.id %>"><%= @work.goods.count %> Good -</h5>
@@ -40,27 +40,27 @@
   <!-- デザイン料画面 -->
   <!-- 販売者のみ表示 -->
   <% if @work.is_active == true %>
-  <div class="row col-lg-5 offset-lg-1">
-  <h4>デザイン料</h4>
-  <h4>¥<%= @work.price %></h4>
-  </div>
+    <div class="row col-lg-5 offset-lg-1">
+    <h4>デザイン料</h4>
+    <h4>¥<%= @work.price %></h4>
+    </div>
   <!-- カート追加ボタン -->
-  <div class="add-to-cart">
-  <%= link_to 'Add to Cart', in_cart_work_path(@work.id), method: :post, class: 'btn btn-warning offset-lg-2 col-lg-8'%>
-  <% end %>
+    <div class="add-to-cart">
+    <%= link_to 'Add to Cart', in_cart_work_path(@work.id), method: :post, class: 'btn btn-warning offset-lg-2 col-lg-8'%>
+    <% end %>
   </div>
 
   <!-- ログイン者のみ表示 -->
   <% if @work.user_id == current_user.id %>
   <!-- 作品編集ボタン -->
-  <div class="work-edit">
-  <%= link_to '作品編集', edit_work_path(@work.id), class: 'btn btn-light offset-lg-11'%>
-  </div>
+    <div class="work-edit">
+    <%= link_to '作品編集', edit_work_path(@work.id), class: 'btn btn-light offset-lg-11'%>
+    </div>
 
-  <!-- 作品削除ボタン -->
-  <div class="work-destroy">
-  <%= link_to '作品削除', work_path(@work.id), method: :delete, class: 'btn btn-danger offset-lg-11', "data-confirm" => "Are you sure?" %>
-  <% end %>
+    <!-- 作品削除ボタン -->
+    <div class="work-destroy">
+    <%= link_to '作品削除', work_path(@work.id), method: :delete, class: 'btn btn-danger offset-lg-11', "data-confirm" => "Are you sure?" %>
+    <% end %>
   </div>
 
 

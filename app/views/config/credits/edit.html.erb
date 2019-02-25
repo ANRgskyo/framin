@@ -1,7 +1,10 @@
-<div class="container bg-light" style="border-radius: 22px 78px 22px 78px;">
+<br><br>
+<div class="container main1 bg-light">
 
-  <div class="row col-lg-6 offset-lg-2">
-  <h1><strong>Credit Card edit</strong></h1>
+
+
+  <div class="creditcaerd-edit-title row col-lg-6 offset-lg-2">
+    <h1><strong>Credit Card edit</strong></h1>
   </div>
 
   <!-- エラーメッセージ -->
@@ -14,68 +17,73 @@
     <% end %>
   </div>
 
-<%= form_for @credit, url: config_credit_path(params[:id]), method: :PATCH do |c| %>
-
-<br>
-<!-- カード名義人記入欄 -->
-<div class="row">
-  <div class="row col-lg-3 offset-lg-3">
-  <h4>カード名義人</h4><p>(半角ローマ字)</p>
-  </div>
-  <%= c.text_field :name, class: "col-lg-3" %>
-</div>
-
- <br>
-<!-- カード番号記入欄 -->
-<div class="row">
-  <div class="row col-lg-3 offset-lg-3">
-  <h4>カード番号</h4>
-  </div>
-  <%= c.number_field :card_number, class: "col-lg-3" %>
-</div>
-
-<br>
-<!-- 有効期限選択欄 -->
-<div class="row">
-  <div class="row col-lg-3 offset-lg-3">
-  <h4>有効期限</h4>
-  </div>
-
-  <%= c.select :month, [["01", "01"], ["02", "02"], ["03", "03"], ["04", "04"], ["05", "05"], ["06", "06"],["07", "07"], ["08", "08"], ["09", "09"], ["10", "10"], ["11", "11"], ["12", "12"]],:prompt => "Slect" %><a>月</a>
 
 
-  <a> / </a>
+  <%= form_for @credit, url: config_credit_path(params[:id]), method: :PATCH do |c| %>
 
-  <%= c.select :year, [["19", "19"], ["20", "20"], ["21", "21"], ["22", "22"], ["23", "23"], ["24", "24"],["25", "25"], ["26", "26"]],  :prompt => "Slect" %>
+    <br>
+    <!-- カード名義人記入欄 -->
+    <div class="creditcard-edit-name row">
+      <div class="row col-lg-3 offset-lg-3">
+        <h4>カード名義人</h4><p>(半角ローマ字)</p>
+      </div>
+      <%= c.text_field :name, class: "col-lg-3" %>
+    </div>
 
-  <a>年</a>
-</div>
+    <br>
+    <!-- カード番号記入欄 -->
+    <div class="creditcard-edit-number row">
+      <div class="row col-lg-3 offset-lg-3">
+        <h4>カード番号</h4>
+      </div>
+      <%= c.number_field :card_number, class: "col-lg-3" %>
+    </div>
 
- <br>
-<!-- セキュリティーコード記入欄 -->
-<div class="row">
-  <div class="row col-lg-4 offset-lg-3">
-  <h4>セキュリティコード</h4><p>(３桁)</p>
-  </div>
-  <%= c.number_field :cvc %>
-</div>
+    <br>
+    <!-- 有効期限選択欄 -->
+    <div class="creditcard-month-yser row">
+      <div class="row col-lg-3 offset-lg-3">
+      <h4>有効期限</h4>
+      </div>
 
-<br>
-<!-- クレジット編集ボタン -->
-<div class="row col-lg-2 offset-lg-8">
-  <%= c.submit "Update", class: "btn btn-dark" %>
-</div>
+      <%= c.select :month, [["01", "01"], ["02", "02"], ["03", "03"], ["04", "04"], ["05", "05"], ["06", "06"],["07", "07"], ["08", "08"], ["09", "09"], ["10", "10"], ["11", "11"], ["12", "12"]],:prompt => "Slect" %><a>月</a>
 
-<br>
-<!-- クレジット削除ボタン -->
-<!-- ログイン者のみ表示 -->
-<% if @credit.user_id == current_user.id %>
-<div class="row col-lg-2 offset-lg-8">
-  <%= link_to 'Card削除', config_path(params[:id]), method: :delete, class: 'btn btn-danger', "data-confirm" => "Are you sure?" %>
-</div>
-<% end %>
 
-<% end %>
+      <a> / </a>
+
+      <%= c.select :year, [["19", "19"], ["20", "20"], ["21", "21"], ["22", "22"], ["23", "23"], ["24", "24"],["25", "25"], ["26", "26"]],  :prompt => "Slect" %>
+
+      <a>年</a>
+
+    </div>
+
+    <br>
+    <!-- セキュリティーコード記入欄 -->
+    <div class="creditcard-edit-cvc row">
+      <div class="row col-lg-4 offset-lg-3">
+      <h4>セキュリティコード</h4><p>(３桁)</p>
+      </div>
+      <%= c.number_field :cvc %>
+    </div>
+
+    <br>
+    <!-- クレジット編集ボタン -->
+    <div class="creditcard-pass-edit row col-lg-2 offset-lg-8">
+      <%= c.submit "Update", class: "btn btn-dark" %>
+    </div>
+
+    <br>
+    <!-- クレジット削除ボタン -->
+    <!-- ログイン者のみ表示 -->
+    <% if @credit.user_id == current_user.id %>
+      <div class="creditcard-pass-delete row col-lg-2 offset-lg-8">
+        <%= link_to 'Card削除', config_path(params[:id]), method: :delete, class: 'btn btn-danger', "data-confirm" => "Are you sure?" %>
+      </div>
+    <% end %>
+
+  <% end %>
+
+
 
 <br>
 </div>

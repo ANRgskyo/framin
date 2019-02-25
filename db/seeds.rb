@@ -25,14 +25,14 @@ Category.create(
 
 Size.create(
 	[
-	  {:size => "A4",:price => '280'},
-	  {:size => "B4",:price => '1120'},
-	  {:size => "A3",:price => '1150'},
-	  {:size => "B3",:price => '1390'},
-	  {:size => "A2",:price => '950'},
-	  {:size => "B2",:price => '1690'},
-	  {:size => "A1",:price => '1990'},
-	  {:size => "B1",:price => '2790'},
+	  {:size => "150mm×150mm",:price => '400'},
+	  {:size => "200mm×200mm",:price => '510'},
+	  {:size => "250mm×250mm",:price => '640'},
+	  {:size => "300mm×300mm",:price => '800'},
+	  {:size => "350mm×350mm",:price => '970'},
+	  {:size => "400mm×400mm",:price => '1100'},
+	  {:size => "450mm×450mm",:price => '1300'},
+	  {:size => "500mm×500mm",:price => '1500'},
 	  {:size => "ポストカード", :price => '820', :quantity => '9'},
 	]
 )

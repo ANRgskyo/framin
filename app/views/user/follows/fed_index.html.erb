@@ -1,4 +1,4 @@
-<div class="container bg-light" style="border-radius: 78px 78px 22px 22px;">
+<div class="container main3 bg-light">
 
   <!-- フォロ人数表示 -->
   <div class="col-lg-2 offset-lg-2">
@@ -20,7 +20,7 @@
     </div>
     <div class="col-lg-5">
       <h5>Introduction:</h5>
-      <h5><%= user.followed.introduction.truncate(110)  %></h5>
+      <h5><%= user.followed.introduction  %></h5>
     </div>
     <div class="col-lg-2">
       <section id="user_<%= user.followed.id %>">

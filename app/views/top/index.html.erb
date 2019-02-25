@@ -1,11 +1,12 @@
 
 <div class="slider">
-	<% @workall.each do |wa| %>
-        <div>
-        <%= attachment_image_tag wa, :image, :fill, 700, 700, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
-        
-          <li class="slider-product-item-name"><%= wa.work_name %></li>
-        </div>
+  <% @workall.each do |wa| %>
+    <div>
+      <%= link_to work_path(wa.id) do %>
+      <%= attachment_image_tag wa, :image, :fill, 700, 700, fortmat: "jpg", :size => "100*100", fallback: "no-user-image.jpg" %>
+      <li class="slider-product-item-name text-dark"><%= wa.work_name %></li>
+      <% end %>
+    </div>
   <% end %>
 </div>
 
