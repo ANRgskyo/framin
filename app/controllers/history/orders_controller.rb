@@ -9,7 +9,8 @@ class History::OrdersController < ApplicationController
   # 販売履歴一覧表示機能
   def index_sale
   	@myworks = Work.where(user_id: current_user.id).pluck(:id)
-  	@cartworks = CartWork.where(work_id: @myworks).page(params[:page]).per(13).order(id: "DESC")
+    @shopping = ShoppingCart.where(is_active: false).pluck(:id)
+  	@cartworks = CartWork.where(work_id: @myworks, shopping_cart_id: @shopping).page(params[:page]).per(13).order(id: "DESC")
   end
 
 end
